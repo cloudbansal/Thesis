@@ -1,0 +1,67 @@
+\chapter{Application Scenario}
+\section{Introduction}
+Here we will discuss the application scenario of the technologies discussed in chapter two. Most of it will be based on the models we described in the requirement document and also banking document.
+In this chapter we will try to describe our understanding of the current banking system. We will give different types of data that exist in the current system and the different operations that it is necessary to support in the system.
+\section{Components}
+We have identified following four components that the bank needs to maintain in its relationship with its customers. Together, these four components define a customer engagement:
+\begin{itemize}
+\item ID
+This is the main identity of the user. The user is identified in the system using this ID. This ID can be anything from a pseudonym, as in the numbered Swiss bank accounts, to the verified real world identity (CPR number) of the customer used in Danish banks. 
+\end{itemize}
+\begin{itemize}
+\item Basic Data
+Related to the ID is the basic data of the user. This data is the data that is required by the bank to identify the customer in real life and maintain its relationship with the customer. Basic data can consist of the following:
+\begin{itemize}
+\item Name
+\item Address
+\item Email ID
+\item Phone Nr.
+\item CPR nr.
+\item Marital Status
+\item Gender
+\item Date of Birth
+This is the most basic form of data which describes a single customer and which rarely changes. It can include some other data that might be crucial for the bank.
+\end{itemize}
+\end{itemize}
+\begin{itemize} 
+\item Account 
+Next component in the chain is the account of user with the bank. The account component holds all the static information regarding the account. Examples of such information are:
+\begin{itemize}
+\item Account Nr.
+\item Account Type
+\item Owner ID
+\item Interest rate
+\item Balance
+\item Account opening date
+\item Overdraw limit
+As before it can include some other data that might be needed to operate the account or that might be crucial for the bank.
+\end{itemize}
+\end{itemize} 
+\begin{itemize}
+\item Transaction History
+The transaction history includes all the dynamic data that the bank has on a particular account. Typical transactions are:
+\begin{itemize}
+\item Deposits
+\item Withdrawals
+\item Accruing Interests
+\end{itemize}
+\end{itemize} 
+\begin{itemize}
+\item Authorization and Access Control
+In the following, we identify the most basic operations needed to maintain the information above and the customer/bank relationship. This includes the operations that are permitted on the accounts. We represent it in our system as an API, which takes an input, and perform the desired operation. Some examples can be:
+\begin{itemize}
+\item Deposit (ID, Account Nr., Amount)
+This is the most basic operation. This will take user ID, Account Nr. and deposit the amount in the account.
+\item Withdraw (ID, Account Nr., Amount)
+This will take user ID, Account Nr. and withdraw the amount from the account.
+\item Transfer (ID, Account Nr. 1 Account, Nr. 2, Amount)
+This will take user ID of the person initiating the transfer, Account Nr. 1, Account Nr. 2 and transfer the amount from Account Nr. 1 to Account Nr. 2.
+\item Close Account (ID, Account Nr.)
+This will take user ID, Account Nr. and close the account.
+\item Open Account (ID)
+This will take user ID and open an account for the given user ID.
+\item Actions (ID, Account Nr., ID1, Action1, ID2, Action2,…., IDn, Actionn)
+This will take user ID, Account Nr. and other IDs and Actions that those IDs are allowed to do on the account and then will create a policy for those IDs in the database.
+For all above operations we assume that ID is authorized to perform such operations.
+\end{itemize}
+\end{itemize} 
