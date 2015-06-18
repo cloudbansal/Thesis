@@ -24,11 +24,10 @@
 %==================================================================================================
 \usepackage{LukeThesis}                             %Import Thesis base style
 %input{PhDMacros}                                   %Thesis specific macros
-%\usepackage[utf8]{inputenc}
-%
 \usepackage[utf8]{inputenc}
 \usepackage{stringenc}
 \usepackage{pdfescape}
+\usepackage[nottoc]{tocbibind}	
 \DeclareUnicodeCharacter{2003}{}
 \makeatletter
 \renewcommand*{\UTFviii@defined}[1]{%
@@ -102,7 +101,9 @@
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \sectionmark{Contents}
 \addtolength{\parskip}{-\baselineskip}
-\tableofcontents
+\tableofcontents 
+\listoffigures 
+%\listoftables
 \addtolength{\parskip}{\baselineskip}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 %-------------
@@ -131,7 +132,8 @@
 \addcontentsline{toc}{chapter}{Bibliography}        %Force addition of Bibliography to TOC
 %\bibliographystyle{alpha}                           %Use alpha codes for references
 \bibliographystyle{ieeetr}                       %Use IEEE codes for references
-\bibliography{References}                           %Bibliography file called
 \nocite{*}
+\bibliography{References}                           %Bibliography file called
+
 \end{document}
 % % % EOF % % %
