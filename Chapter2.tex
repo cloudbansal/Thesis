@@ -18,7 +18,6 @@ This chapter introduce all the different technologies currently available which 
 	\caption{Technology Overview}
 	\label{fig:Technologies}
 \end{figure}
-
 \section{Secure Multi-Party Computing}
 These technologies are the ones which involve multiple parties to do computations. It is a subfield of cryptography which involves multiple parties getting an input and compute a joint function on them while keeping these inputs private. We basically looked at 2 technologies of interest here:
 \subsection{Homomorphic Encryption}
@@ -35,7 +34,12 @@ Threshold cryptography is a field of public key cryptography where in order to d
 \section{Identity Management Systems}
 These are traditional identity management systems. For our purposes we look at OpenID system.
 \subsection{OpenID}
-OpenID is open standard and decentralized protocol which can be used to authenticate to different cooperating sites with the use ofa third party service. There is a notion of \textit{Relying party} and \textit{Identity Provider} in this system. The authentication steps in OpenID are as follows:
+OpenID is an open and decentralized protocol, which can be used to authenticate to different co-operating sites with the use of a third party service. It has notion of a \textit{relying party} and \textit{OpenID identity provider}.
+\begin{itemize}
+\item \textbf{OpenID Identity Provider} OpenID identity provider is the service, which actually provides authentication services. End user registers at OpenID identity provider to get his OpenID identity.
+\item \textbf{Relying Party} Relying party is the website which user wants to authenticate to and which rely on the OpenID identity provider to provide authentication.
+\end{itemize}
+In addition to this an extension called \textit{OpenID attribute exchange} helps facilitate the transfer of user attributes from identity provider to the relying party
 \begin{itemize}
 \item User goes to the relying party service page
 \item Service page presents different OpenID providers to login to the service
@@ -56,9 +60,26 @@ U-Prove is a digital credential technology by IBM. it relies on anonymous creden
 	\item \textbf{Issuer} Issuer is the entity, which issues the credentials to the prover to prove his identity
 	\item \textbf{Inspector} Inspector is the entity, which in case of discrepancy or legal requirement , can actually come and get the real identity of the prover.
 \end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{figures/Roles}
+	\begin{minipage}{\textwidth}
+		\footnotesize
+		\emph{Source: https://github.com/p2abcengine/p2abcengine/wiki/Concepts-and-features}
+	\end{minipage}
+	\caption{IDEMIX Roles}
+	\label{fig:Roles}
+\end{figure}
+
 For IDEMIX we need computing devices which work on behalf of each entity in the system.
 \subsubsection{IDEMIX Credential}
 An Idemix credential is CL Signature by issuer on user's private key and on attribute values. A user have independent public keys or pseudonyms for the same private key. These pseudonyms are IDEMIX tokens which are then used by the user to prove his identity to the different verifiers. IDEMIX has been studied a lot and many EU projects on anonymous credentials are based on it e.g. FutureID, ABC4Trust etc.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{figures/Credential}
+	\caption{IDEMIX Credential}
+	\label{fig:Credential}
+\end{figure}
 \subsubsection{Issuance}
 The first step is the credential issuance. It involves following steps:
 \begin{itemize}
@@ -74,6 +95,12 @@ The first step is the credential issuance. It involves following steps:
 \end{itemize}
 \subsubsection{Presentation}
 Next step is to present the IDEMIX token for authentication to the verifier. It consists of following steps:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{figures/Token}
+	\caption{IDEMIX Presentation Token}
+	\label{fig:Token}
+\end{figure}
 \begin{itemize}
 	\item User get the presentation policy from the verifier which specifies
 		\subitem Which credentials user must present
@@ -86,9 +113,11 @@ Next step is to present the IDEMIX token for authentication to the verifier. It 
 IDEMIX provides the ID escrow ability in case it is required. Following steps need to be followed for ID escrow purposes in IDEMIX:
 \begin{itemize}
 	\item The presentation policy can have following optional specifications for the purpose of ID Escrow
-		\subitem Public keys of inspectors
-		\subitem Attributes values to be encrypted using the keys	
-		\subitem Inspection conditions under which these attributes can be revealed
+	\begin{itemize}
+		\item Public keys of inspectors
+		\item Attributes values to be encrypted using the keys	
+		\item Inspection conditions under which these attributes can be revealed
+	\end{itemize}
 	\item User can prove that he has put these values in the presentation token with verifiable encryption to the verifier
 	\item Once the token in presented, the inspection conditions are fixed and cannot be changed 
 	\item In case of some discrepancy or legal requirement, an inspector can come and get the identity of the user from the token
