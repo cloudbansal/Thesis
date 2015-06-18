@@ -44,7 +44,9 @@ Authentication steps are as following in IDEMIX based system
 	\item User goes to login page
 	\item User provides his username and password
 	\item This is sent to IDEMIX IMS which then gets the saved user credential and creates a presentation token with a pseudonym for the bank
-	\item Also for escrow purposes the real user identity is also encrypted in the token with the public keys of authorities
+	\begin{itemize}
+		\item Also for escrow purposes the real user identity is also encrypted in the token with the public keys of authorities
+	\end{itemize}
 	\item Bank receives this presentation token and gets the following information
 	\begin{itemize}
 		\item Pseudonym
