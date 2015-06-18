@@ -13,6 +13,11 @@ Here we will give some of the definitions used in the system
 \subsection{User}
 \subsection{Bank}
 \subsection{Service}
+\subsection{Unlinkability}
+\subsection{Revocation}
+\subsection{Partial Information Disclosure}
+\subsection{Conditional Anonymity Removal}
+\subsection{Legal Requirement}
 \section{Case Study}
 Nykredit is a major financial institution in Denmark providing different services, such as mortgages, retail banking, investment banking etc. They also are part of a big group of companies, which includes other financial institutions providing similar services. These financial institutions basically provide Nykredit services as their own services to the customers.
 Nykredit has mainly 2 types of customers:
@@ -24,7 +29,7 @@ Nykredit has mainly 2 types of customers:
 	\centering
 	\includegraphics[width=\textwidth]{figures/Customers}
 	\caption{Identities in the system}
-	\label{fig:Cutomers}
+	\label{fig:Customers}
 \end{figure}
 \subsection{Private Customers}
 Private customers are the individual customers who access Nykredit services on their own. Usually there is a single person accessing the services of the bank. These customers are usually people who get a personal bank account with Nykredit.
@@ -41,4 +46,6 @@ This means that it is required that Nykredit, in case of a legal request, is abl
 	\item For complying with legislation Nykredit should be able to map real identity of the individual person with the transaction in case its required by the law.
 \end{itemize}
 The project will perform an initial analysis of a single business process from administrative data management, with respect to identifying the need to bind authenticated identities to actions at the different steps of the process; this analysis will be presented to stakeholders from the specific administrative domain. Based on the initial analysis of the selected business process, the project will develop a full identity model for the chosen business process with anonymisation and pseudonymisation of actors whenever possible. The feasibility of the proposed model will be evaluated through a prototype that implements the model using standard components from identity management infrastructures whenever possible.
+\section{Summary}
+Companies do not want to disclose the personal identity of their employees to Nykredit, but they still need the ability to access all services online. Managing all identities, while maintaining privacy, is not easy and provides different challenges. We have to design a system, which fulfill the entire privacy requirement and still enables Nykredit to provide its services to its customers and meet the regulatory requirements of the authorities without any problem.
  

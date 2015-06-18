@@ -46,3 +46,94 @@ OpenID is open standard and decentralized protocol which can be used to authenti
 \item After user consent, user is redirected to the relying party website with user credentials
 \item Relying party can verify the credentials and then login the user to the service
 \end{itemize}
+\section{Zero Knowledge Technologies}
+These are the technologies which use the concept of zero knowledge i.e. proving knowledge about something without divulging the information. For our purpose we focus on mainly 2 technologies – IDEMIX and U-Prove, which are based on the concept of zero knowledge and verifiable encryption.. They both have a lot in common and have been studied a lot in industry. 
+\subsection{IDEMIX}
+U-Prove is a digital credential technology by IBM. it relies on anonymous credentials known as IDEMIX tokens. It is based on Camenisch-Lysyanskaya (CL) signature scheme which provides efficient zero-knowledge proofs. IDEMIX  have different entities in the system
+\begin{itemize}
+	\item \textbf{User} User is basically the entity, which is proving his identity in the system.
+	\item \textbf{Verifier} Verifier is the entity, which verifies the identity of the prover.
+	\item \textbf{Issuer} Issuer is the entity, which issues the credentials to the prover to prove his identity
+	\item \textbf{Inspector} Inspector is the entity, which in case of discrepancy or legal requirement , can actually come and get the real identity of the prover.
+\end{itemize}
+For IDEMIX we need computing devices which work on behalf of each entity in the system.
+\subsubsection{IDEMIX Credential}
+An Idemix credential is CL Signature by issuer on user's private key and on attribute values. A user have independent public keys or pseudonyms for the same private key. These pseudonyms are IDEMIX tokens which are then used by the user to prove his identity to the different verifiers. IDEMIX has been studied a lot and many EU projects on anonymous credentials are based on it e.g. FutureID, ABC4Trust etc.
+\subsubsection{Issuance}
+The first step is the credential issuance. It involves following steps:
+\begin{itemize}
+	\item User sends credential request to the issuer
+	\item Issuer presents the issuance policy specifying
+		\subitem Which attributes to present
+		\subitem Which pseudonym/existing credentials to present
+	\item Issuer also present a credential template specifying
+		\subitem Which attributes of the new credentials will be generated at random
+		\subitem Or carried over from existing credential or pseudonym
+	\item User then present the issuance token satisfying the issuance policy
+	\item Then multi-round cryptographic protocol ensues at end of which user get the IDEMIX credential
+\end{itemize}
+\subsubsection{Presentation}
+Next step is to present the IDEMIX token for authentication to the verifier. It consists of following steps:
+\begin{itemize}
+	\item User get the presentation policy from the verifier which specifies
+		\subitem Which credentials user must present
+		\subitem What information user should reveal from these credential
+	\item User generate a presentation token in accordance with the presentation policy revealing only the attributes necessary
+	\item User present this presentation token to the verifier
+	\item Verifier can then verify the attributes
+\end{itemize}
+\subsubsection{ID Escrow}
+IDEMIX provides the ID escrow ability in case it is required. Following steps need to be followed for ID escrow purposes in IDEMIX:
+\begin{itemize}
+	\item The presentation policy can have following optional specifications for the purpose of ID Escrow
+		\subitem Public keys of inspectors
+		\subitem Attributes values to be encrypted using the keys	
+		\subitem Inspection conditions under which these attributes can be revealed
+	\item User can prove that he has put these values in the presentation token with verifiable encryption to the verifier
+	\item Once the token in presented, the inspection conditions are fixed and cannot be changed 
+	\item In case of some discrepancy or legal requirement, an inspector can come and get the identity of the user from the token
+\end{itemize}
+
+
+\subsection{U-Prove}
+U-Prove is a digital credential technology by Microsoft. It relies on anonymous credentials known as U-Prove tokens. It provides users a way to minimaly disclose their personal information while interacting with different online services. U-prove have different entities in the system
+\begin{itemize}
+	\item \textbf{Prover} Prover is basically the entity, which is proving his identity in the system.
+	\item \textbf{Verifier} Verifier is the entity, which verifies the identity of the prover.
+	\item \textbf{Issuer} Issuer is the entity, which issues the credentials to the prover to prove his identity
+	\item \textbf{Auditor} Auditor is the entity, which in case of discrepancy or legal requirement , can actually come and get the real identity of the prover.
+\end{itemize}
+For U-Prove we need computing devices which work on behalf of each entity in the system.
+\subsubsection{U-Prove Token}
+U-Prove token is basically cryptographically protected information of any kind e.g. attributes. These are issued by issuer to the prover by issuance protocol. These tokens are then presented by prover to the verifier. Issuance and presentation of U-Prove tokens is unlinkable.
+\subsubsection{Issuance}
+The first step is the credential issuance. It involves following steps:
+\begin{itemize}
+	\item Prover invoke U-Prove issuance protocol
+	\item Prover provides the attributes to be encoded
+	\subitem Using \textit{Collaborative Issuance} property user can make sure that issuer doesn’t actually knows the attributes
+	\item Then multi-round cryptographic protocol ensues at end of which user get the U-Prove token from the issuer
+\end{itemize}
+\subsubsection{Presentation}
+Next step is to present the U-Prove token for authentication to the verifier. It consists of following steps:
+\begin{itemize}
+	\item Prover invoke the U-Prove presentation protocol
+	\item User generate a presentation token in accordance with the presentation policy revealing only the attributes necessary
+	\item User present this presentation token to the verifier
+	\item Verifier can then verify the attributes
+\end{itemize}
+It must be noted that a revocation check can be added if needed before verifying the token.
+\subsubsection{ID Escrow}
+ID Escrow in U-Prove is actually an extension to existing U-Prove technology. It uses a type of ElGamal encryption which is verifiable.
+\begin{itemize}
+	\item  During the presentation protocol, prover proves that his ID is encrypted in the token by the use of verifiable encryption technology
+	\item De-anonymization cannot be done by verifier or issuer
+	\item A special entity called Auditor is responsible for de-anonymization in case of some discrepancy or legal requirement
+	\item Threshold cryptography can be used in case of auditors and key can be split among multiple auditors.
+\end{itemize}
+\section{Summary}
+All these different technologies provide different level of anonymization in the system. Some of them are easy to integrate in existing technology, while some are still not mature enough. For our purposes from now on we focus on mainly 2 technologies:
+\begin{itemize}
+	\item OpenID
+	\item IDEMIX
+\end{itemize}
