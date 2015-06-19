@@ -5,16 +5,21 @@ This chapter will present our proposed system as the solution. We will define ou
 In order to solve the problem we first look at how the users are identified in the system. There are 2 ways by which bank can identify the actual users
 \begin{itemize}
 	\item From the logs i.e. transaction data
+\\
 \\Banks store all the logs or transaction data with real id of the user. Its easy to access this data by the bank for a given user and extract all of his data.
 	\item From a database in the bank system where personal details of the user are stored.	
+\\
 \\Bank stores personal data about all its users in a database. As this database lies at the bank, its possible for bank to use the database to get the personal information about a user.
 \end{itemize}
 We can remove this identification in following ways.
 \begin{itemize}
 	\item Remove the user identity from the logs and transaction data
+\\
 \\This way there is no way for the bank to get transaction data for a given user as there will be no user identity linked to the logs or transactions.
 	\item Either remove the user personal data or limit the access to this personal database
+\\
 \\If bank removes the personal database of the users from its side, then there is no way bank can get personal information of the users.
+\\
 \\If bank limit access to such database and don't really use it for day to day banking purposes then its also possible for bank to limit access to user personal information.
 \end{itemize}
 \section{Pseudonym System}
@@ -47,6 +52,7 @@ As in our system bank never gets the real identity of the user, the user anonymi
 
 \section{Summary}
 In this chapter we presented our pseudonym system. Also we have given some certain privacy properties that our pseudonym system should be able to fulfill. In the next chapter, we will discuss about the prototype with the pseudonym system.
+\\
 \\For our purposes we have decided to take case of 2 different systems for our IMS
 \begin{itemize}
 	\item OpenID

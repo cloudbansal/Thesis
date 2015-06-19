@@ -30,6 +30,7 @@ User authentication happens as follows:
 	\item User credentials are verified by IMS and then user is redirected to his account page.
 \end{itemize}
 One thing to note that is that as traditional user, this doesn't change anything on the user end. User still use the same process to get access to his account.
+\\
 \\As we can see in \ref{fig:Logged}, after authentication user is logged in with a pseudonym.	
 \section{User Information}
 \begin{figure}[h]
@@ -45,6 +46,7 @@ One thing to note that is that as traditional user, this doesn't change anything
 	\label{fig:Account2}
 \end{figure}
 When we go to user information page we can see the information that is given to the bank by IMS for a given user.
+\\
 \\In our case it is:
 \begin{itemize}
 	\item Pseudonym
@@ -72,6 +74,7 @@ In our prototype user is allowed to do 2 types of transactions
 	\item Credit
 \end{itemize}
 All the transactions that are done by the user are logged in with the pseudonym; with which user has been logged in to the system.
+\\
 \\\ref{fig:New} shows the new transactions page in the system where user is allowed to do the transactions.
 \begin{figure}[h]
 		\centering
@@ -79,6 +82,7 @@ All the transactions that are done by the user are logged in with the pseudonym;
 		\caption{Account Transactions}
 		\label{fig:Transactions}
 \end{figure}
+\\
 \\\ref{fig:Transactions} shows all the transactions that has been done on the given account by users. As we can see, all the transactions are saved with the pseudonym of the users.
 \begin{figure}[h]
 	\centering
@@ -92,6 +96,7 @@ All the transactions that are done by the user are logged in with the pseudonym;
 	\caption{Downloaded Transactions File}
 	\label{fig:File}
 \end{figure}	
+\\
 \\Our system also allow the users to download the transactions from the download transactions page as shown in \ref{fig:Download}. These transactions are stored in a csv file and then can be seen as in \ref{fig:File}.
 \section{Summary}
 In this chapter we showed a simple prototype of our system. This system works with pseudonyms and in the next chapter we will talk about how we can replace our Identity Mapping System with OpenID and IDEMIX for our purposes.

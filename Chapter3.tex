@@ -9,6 +9,7 @@ This chapter will discuss the information flow of the current system. We will pr
 	\label{fig:Flow}
 \end{figure}
 A person has different information associated with him. 
+\\
 \\To Nykredit it can be:
 \begin{itemize}
 	\item Personal
@@ -31,7 +32,9 @@ A company has following information that it might share with Nykredit:
 	\item Authorized Person ID
 \end{itemize}
 This Authorized Person ID is the identifier that is used by the authorized person on behalf of the company. This can be stored in some database where it is matched to Personal ID of the person.
+\\
 \\The Authorized Person ID can either be same identifier as the Personal ID, the Company ID or a different identifier that can be authenticated. 
+\\
 \\In case the Personal ID is used as the Authorized Person ID, it gives Nykredit some additional capabilities:
 \begin{itemize}
 \item Nykredit can use this information to recruit new customers. If the authorized person is not a customer before, Nykredit can use this info to contact them.
@@ -43,6 +46,7 @@ While good corporate governance at Nykredit will prevent these issues, it is des
 
 \section{Separation of Identities}
 A way to remove the link between Personal ID and Authorized Person ID is to use separate IDs and to maintain a database which links the Authorized Person ID back to the Personal ID. This database can be protected in different ways, so that the information can be used only in case legal authorities need to link the two IDs.
+\\
 \\This database can be maintained at 3 places :
 \begin{itemize}
 	\item Company 
@@ -53,22 +57,29 @@ A way to remove the link between Personal ID and Authorized Person ID is to use 
 \textbf{Advantages}
 \begin{itemize}
 	\item Nykredit doesn’t have to invest extra in IT infrastructure
+	\\
 	\\It is expensive to maintain the entire IT infrastructure by Nykredit, so it is easier and cheaper for Nykredit to let the company maintain the database.
 	\item Nykredit can easily prove that it cannot link different Identities
+	\\
 	\\Nykredit does not have access to the database, so it can easily be proved that Nykredit cannot link the different identities.
 	\item Company maintain their own private data
+	\\
 	\\Companies can be sure that Nykredit does not have access to the personal data of their employees
 \end{itemize}
 \textbf{Disadvantages}
 \begin{itemize}
 	
 	\item There is no way to retrieve data if the company stops existing
+	\\
 	\\In this case the entire mapping database may be lost.
 	\item Authorities have to go to the Company to get the data
+	\\
 	\\Nykredit does not have access to the database, so the authorities have to go to Nykredit first to obtain the Authorized Person ID and then to the individual companies next to get the Personal ID.
 	\item Company might tamper with the database
+	\\
 	\\In the case of a rogue employee at the company, which is exactly the case that the legislation is intended to identify, this employee will have easy access to this database and hence the ability to tamper with the database and remove the authorities ability to identify him.
 	\item It might prove too difficult for new customers to fulfill all the technical requirements 
+	\\
 	\\Larger companies can have their own IT infrastructure, but for smaller companies it might prove to be a difficult task to become a new Nykredit customer if they have to invest extra in IT infrastructure just for this purpose.
 \end{itemize}
 
@@ -85,35 +96,46 @@ A way to remove the link between Personal ID and Authorized Person ID is to use 
 \textbf{Disadvantages}
 \begin{itemize}
 	\item Nykredit has to invest extra in IT infrastructure
+	\\
 	\\Nykredit has to invest extra to keep this system in place.
 	\item Company does not have control over their own private data
+	\\
 	\\The database is on Nykredit side, so companies have to store the data there and hence they do not have control over their own private data.
 	\item It is difficult for Nykredit to prove that they cannot link different identities when they are managing the database
+	\\
 	\\Nykredit will be managing everything in-house, so it is difficult to prove that they cannot access the database and link the identities.
 	\item It may be difficult for customers to adhere to the Nykredit technological standards
+	\\
 	\\Nykredit may not be able to support all available technologies for their customers, so some customers, who are using a different setup than Nykredit, may find it difficult to comply with the Nykredit standard.
 \end{itemize}
 \subsubsection{Database on 3rd Party Side}
 \textbf{Advantages}
 \begin{itemize}
 	\item Neither companies nor Nykredit have to invest extra in IT infrastructure
+	\\
 	\\The database is managed by the trusted 3rd party, who will invest in the infrastructure, so neither Nykredit nor the companies will have to invest extra in IT infrastructure
 	\item It is easier for new and old customers to be a customer at Nykredit
+	\\
 	\\The trusted 3rd party can support a wide range of technologies, so it is easier for customers to use their existing technology when becoming a new customer at Nykredit
 	\item Nykredit can easily prove that it cannot link different Identities
+	\\
 	\\Nykredit is not hosting the database, so it is easier for them to prove that they cannot link the identities.
 	\item Data can still be retrieved in case the company stops existing 
+	\\
 	\\The database is always with the trusted 3rd party, so it does not matter if some company stops existing, the data can still be accessed. Special arrangements have to be made in case the trusted 3rd party ceases to exist, but this will be rare and in that case, Nykredit may decide to take over that part of the trusted 3rd party.
 	\item Company cannot tamper with database
+	\\
 	\\The companies do not have access to the database, so they cannot tamper with the data.
 	\item Authorities only have to go to the trusted 3rd party to get the data in case its needed.
 \end{itemize}
 \textbf{Disadvantages}
 \begin{itemize}
 	\item The 3rd party must be trusted by both Nykredit and its customers
+	\\
 	\\The database is neither with the company nor Nykredit, so the external service provider should be trusted by both parties to hold their sensitive data.
 	\item In case the trusted 3rd party goes out of business it might be difficult to retrieve the data.
 	\item Companies do not have control over their own data
+	\\
 	\\The database is maintained by an external service provider, so the companies have to store the data there and hence they do not have control over their own private data.
 \end{itemize}
 \section{Current Banking System}

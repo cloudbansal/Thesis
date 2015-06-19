@@ -2,7 +2,6 @@
 
 \section{Introduction}
 This chapter introduce the topic of the thesis. It defines the problem statement and also give a brief background about it.
-
 \section{Background}
 Administrative data systems currently rely on the Central Personal Register Id (CPR Nr.) to link customer data with a real world identity. This means that almost all data managed by the institutions must be classified as personal identifiable information and therefore managed according to strict confidentiality requirements as well as integrity and availability requirements. The purpose of this thesis project is to examine ways to decouple transaction data from the underlying identities, so that the data used in the institution's day to day operations are decoupled from the underlying customer identity. This limits the confidentiality requirements for the data and the vulnerability to insider threats, such as the recent leak of celebrity data from NETS to the magazine "Se \& Hør". It must, however, be possible to link customer data to real world identities when reporting financial data to the Tax authorities or in connection with suspicions about criminal activity, e.g. fraud, insider trading, whitewashing, etc. Austria is already considering similar approaches in the public health care system, where the health records of the citizens are saved under pseudonyms, which are mapped one-to-one to the single citizen.
 \section{Definitions}
@@ -12,6 +11,7 @@ Here we will give some of the definitions used in the system
 \subsection{Pseudonym}
 \subsection{User}
 \subsection{Bank}
+\subsection{Third party}
 \subsection{Service}
 \subsection{Unlinkability}
 \subsection{Revocation}
@@ -37,9 +37,11 @@ Private customers are the individual customers who access Nykredit services on t
 Corporate customers are either companies who are customers of Nykredit or other financial institutions which provide Nykredit services to their own private customers. Usually there are many people who access Nykredit services on behalf of the corporate customer.
 \section{Problem}
 We consider the case of a person, who may either be a private customer of Nykredit, or an employee of a company who is corporate customer of Nykredit. In this case, the person may also be responsible for managing the accounts of his employer with Nykredit.
+\\
 \\Nykredit wants to setup an identity management system so that there is no need for the individual to disclose his personal identity to Nykredit to access the account on behalf of the company.
 \\Nykredit, however, also have to comply with relevant legislation (KYC, AML, “Hvidvaskningsloven”),  e.g. in case the authorities (Tax, Police, etc.) find some suspicious transactions. Nykredit needs to provide the identity of the person responsible for these transactions.
 This means that it is required that Nykredit, in case of a legal request, is able to identify the individual employee from the institution, who is accessing the account on the corporate customer’s behalf.
+\\
 \\So the main goal of the system is:
 \begin{itemize}
 	\item Nykredit should not learn identity of the individual person accessing the services on behalf of corporate customer.
