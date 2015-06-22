@@ -5,7 +5,7 @@
    xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd"
    Version="1.0">
   <abc:ParametersUID>http://mybank/issuance:idemix</abc:ParametersUID>
-  <abc:FriendlyIssuerDescription lang="en">Issuer parameters for Nykredit IMS</abc:FriendlyIssuerDescription>
+  <abc:FriendlyIssuerDescription lang="en">Issuer parameters for Mybank IMS</abc:FriendlyIssuerDescription>
   <abc:AlgorithmID>urn:abc4trust:1.0:algorithm:idemix</abc:AlgorithmID>
   <abc:CredentialSpecUID>http://mybank/credential</abc:CredentialSpecUID>
   <abc:HashAlgorithm>urn:abc4trust:1.0:hashalgorithm:sha-256</abc:HashAlgorithm>
