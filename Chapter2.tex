@@ -4,14 +4,35 @@
 This chapter introduce all the different technologies currently available which deal with anonymity and privacy. Some of the technologies are already commercially available and being used in the industry, while some are still in research phase. We will give a brief introduction for all of them and brief idea how they can be used.
 
 
-\section{Technologies}
+\section{Definitions and Common Terminology}
+In this thesis, we have used some terminologies and definitions. Some of the important ones are given below:
+\subsection{Privacy}
+Privacy is the ability of an individual to control the distribution of information about himself. An individual should be able to choose which information about him should remain secret and which information can be revealed.
+\subsection{Anonymity}
+Anonymity refers to ability of a user to not give any information about him at all to the system. An anonymous system doesn't have any identity of the user.
+\subsection{Pseudonym}
+Pseudonym is a name given to the user in pseudonymous systems. This name is given to hide the real identity of the user from the system. The system only knows the user by his pseudonym.
+\subsection{User}
+User is the end user of the system. Its the person who will go online and get the services.
+\subsection{Bank}
+Bank is the financial institution which provides online financial services to the user. 
+\subsection{Third party}
+A third party or trusted third party is the entity which is neither bank or the user in the system. A third party provides different services to banks or users and hence reducing the burden on them to setup all the infrastructure by themselves.
+\subsection{Service}
+Service is something that is provided to the user online by a system. It may include ability to login, check his account balance, Upload pictures, share spreadhseets etc.
+\subsection{Unlinkability}
+Unlinkability is the privacy property where its not possible to link 2 different entities to each other even though they are the same. 
+\\
+\\e.g. not be able to link 2 different sessions by the same user in the system.
+\subsection{Revocation}
+Revocation is the property where a user credential is revoked by user or some other authority. After revocation, this credential cannot be used for anything.
+\subsection{Partial Information Disclosure}
+Its the ability of a user to only disclose some partial information about himself to the system. e.g. a user might just want to disclose his last name to the system but not his full name.
+\subsection{Legal Requirement}
+A legal requirement is something that is required by the law. e.g. it may be required by the law for the bank to log all the customer data. Also sometimes in case of suspicious transactions bank maybe required legally to give the user identity to the relevant authorities.
+\subsection{Conditional Anonymity Removal}
+Its the ability of the system to remove anonymity of the user if some conditions that were set before are met. This is mainly used for escrow purposes.
 
-\begin{enumerate}
-	\item Secure Multi-Party Computing
-	\item Escrow Technologies
-	\item Identity Management Systems
-	\item Zero Knowledge Technologies
-\end{enumerate}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/Technologies}
@@ -76,7 +97,7 @@ For IDEMIX we need computing devices which work on behalf of each entity in the 
 An Idemix credential is CL Signature by issuer on user's private key and on attribute values. A user have independent public keys or pseudonyms for the same private key. These pseudonyms are IDEMIX tokens which are then used by the user to prove his identity to the different verifiers. IDEMIX has been studied a lot and many EU projects on anonymous credentials are based on it e.g. FutureID, ABC4Trust etc.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{figures/Credential}
+	\includegraphics[width=170pt]{figures/Credential}
 	\caption{IDEMIX Credential}
 	\label{fig:Credential}
 \end{figure}
