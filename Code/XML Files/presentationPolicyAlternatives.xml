@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- This is a sample ABC4Trust presentation policy for... -->
+
+<abc:PresentationPolicyAlternatives
+  xmlns:abc="http://abc4trust.eu/wp2/abcschemav1.0"
+  Version="1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd">
+  <abc:PresentationPolicy
+    PolicyUID="http://mybank/presentation">
+    <abc:Message>
+      <abc:ApplicationData>
+        Corporate Account at Mybank
+      </abc:ApplicationData>
+    </abc:Message>
+<abc:Pseudonym Exclusive="xs:boolean"? Scope "xs:string"Established="xs:boolean"? Alias="xs:anyURI"? SameKeyBindingAs="xs:anyURI"?>
+<abc:PseudonymValue> </abc:PseudonymValue>?
+</abc:Pseudonym>*
+    <abc:Credential Alias="#token">
+      <abc:CredentialSpecAlternatives>
+        <abc:CredentialSpecUID>http://mybank/credential</abc:CredentialSpecUID>
+      </abc:CredentialSpecAlternatives>
+      <abc:IssuerAlternatives>
+        <abc:IssuerParametersUID>http://mybank/issuance:idemix</abc:IssuerParametersUID>
+      </abc:IssuerAlternatives>
+      <abc:DisclosedAttribute AttributeType="UserID" >
+      	<abc:InspectorAlternatives>
+      		<abc:InspectorPublicKeyUID>http://mybank/inspection</abc:InspectorPublicKeyUID>
+      	</abc:InspectorAlternatives>
+      	<abc:InspectionGrounds>Reveal UserID for inspection.</abc:InspectionGrounds>
+      </abc:DisclosedAttribute>
+    </abc:Credential>
+     <abc:AttributePredicate Function="urn:oasis:names:tc:xacml:1.0:function:integer-equal">
+      <abc:Attribute CredentialAlias="#token" AttributeType="AccountID" />
+      <abc:ConstantValue>23784638726</abc:ConstantValue>
+    </abc:AttributePredicate>
+<abc:AttributePredicate Function="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+      <abc:Attribute CredentialAlias="#token" AttributeType="Withdraw" />
+      <abc:ConstantValue>1</abc:ConstantValue>
+    </abc:AttributePredicate>
+<abc:AttributePredicate Function="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+      <abc:Attribute CredentialAlias="#token" AttributeType="Transfer" />
+      <abc:ConstantValue>1</abc:ConstantValue>
+  </abc:PresentationPolicy>
+</abc:PresentationPolicyAlternatives>

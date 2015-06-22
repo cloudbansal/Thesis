@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<abc:IssuancePolicyAndAttributes 
+    xmlns:abc="http://abc4trust.eu/wp2/abcschemav1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd">
+
+    <abc:IssuancePolicy Version="1.0">
+    <abc:PresentationPolicy PolicyUID="http://mybank/issuance/policy">
+        <abc:Pseudonym Exclusive="true" Scope="http://mybank" Established="false" Alias="#nym"/>
+      <abc:Message>
+        <abc:Nonce>KNsRu9cGzkaeabogeRVV</abc:Nonce>
+        <abc:ApplicationData>
+          <abc:TestApplicationData>
+          <abc:Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xsi:type="xs:string">Some data</abc:Data>
+          </abc:TestApplicationData>
+        </abc:ApplicationData>
+      </abc:Message>
+      </abc:PresentationPolicy>
+
+      <abc:CredentialTemplate SameKeyBindingAs="#nym">
+        <abc:CredentialSpecUID>http://mybank/credential</abc:CredentialSpecUID>
+        <abc:IssuerParametersUID>http://mybank/issuance:idemix</abc:IssuerParametersUID>
+        <abc:UnknownAttributes/>
+      </abc:CredentialTemplate>
+    </abc:IssuancePolicy>
+
+    <abc:Attribute>
+      <abc:AttributeUID>-5027215341191833963</abc:AttributeUID>
+      <abc:AttributeDescription DataType="xs:string" Encoding="urn:abc4trust:1.0:encoding:string:sha-256" Type="FirstName">
+        <abc:FriendlyAttributeName lang="en">first name</abc:FriendlyAttributeName>
+        <abc:FriendlyAttributeName lang="da">fornavn</abc:FriendlyAttributeName>
+      </abc:AttributeDescription>
+      <abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">John</abc:AttributeValue>
+    </abc:Attribute>
+    <abc:Attribute>
+      <abc:AttributeUID>-2715953330829768453</abc:AttributeUID>
+      <abc:AttributeDescription Type="FirstName" DataType="xs:string" Encoding="urn:abc4trust:1.0:encoding:string:utf-8">
+            <abc:FriendlyAttributeName lang="en">Name</abc:FriendlyAttributeName>
+        </abc:AttributeDescription>
+      <abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Doe</abc:AttributeValue>
+    </abc:Attribute>
+    <abc:Attribute>
+      <abc:AttributeUID>-2231744817504418816</abc:AttributeUID>
+      <abc:AttributeDescription Type="Birthday" DataType="xs:date" Encoding="urn:abc4trust:1.0:encoding:date:unix:signed">
+            <abc:FriendlyAttributeName lang="en">Birthday</abc:FriendlyAttributeName>
+        </abc:AttributeDescription>
+      <abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">1990-07-16Z</abc:AttributeValue>
+    </abc:Attribute>
+    <abc:Attribute>
+      <abc:AttributeUID>-2231744817504418826</abc:AttributeUID>
+      <abc:AttributeDescription Type="UserID" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unsigned">
+            <abc:FriendlyAttributeName lang="en">User id</abc:FriendlyAttributeName>
+        </abc:AttributeDescription>
+      <abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">123</abc:AttributeValue>
+    </abc:Attribute>
+    <abc:Attribute>
+      <abc:AttributeUID>-1231744817504418817</abc:AttributeUID>
+       <abc:AttributeDescription Type="AccountID" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unix:unsigned">
+            <abc:FriendlyAttributeName lang="en">Account ID</abc:FriendlyAttributeName>
+        </abc:AttributeDescription>
+      <abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:integer">23784638726</abc:AttributeValue>
+    </abc:Attribute>
+<abc:Attribute>
+      <abc:AttributeUID>-1231744817504418818</abc:AttributeUID>
+        <abc:AttributeDescription Type="Withdraw" DataType="xs:boolean" Encoding="urn:abc4trust:1.0:encoding:boolean:unix:unsigned">
+            <abc:FriendlyAttributeName lang="en">Withdraw</abc:FriendlyAttributeName>
+        </abc:AttributeDescription>
+      <abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:boolean">1</abc:AttributeValue>
+    </abc:Attribute>
+<abc:Attribute>
+      <abc:AttributeUID>-1231744817504418819</abc:AttributeUID>
+       <abc:AttributeDescription Type="Transfer" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unix:unsigned">
+            <abc:FriendlyAttributeName lang="en">Transfer</abc:FriendlyAttributeName>
+        </abc:AttributeDescription>
+      <abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:boolean">1</abc:AttributeValue>
+    </abc:Attribute>
+</abc:IssuancePolicyAndAttributes>
