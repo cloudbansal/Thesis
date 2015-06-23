@@ -62,6 +62,65 @@ Following are the steps for ID escrow in OpenID based system
 	\item After verifying, IMS gives the mapping data to the authorities.
 	\item Authorities then get the real identity of the user from mapping and transaction data.
 \end{itemize}
+\section{Analysis}
+With the use of OpenID IMS we add a pseudonymous layer in the system. This provides us the necessary privacy. But in order to do so OpenID provider needs access to a lot of data. Some of the example data is:
+\begin{itemize}
+	\item UserID
+	\item Account ID 
+	\item Policies	
+\end{itemize}
+In addition to that, the provider needs to store the mapping database from UserID to Pseudonym. Bank really has to trust the provider with storage of all this sensitive data. In some cases bank might not want the provider to store such data by themselves.
+\\
+\\In case there is a discrepancy, the authorities need to go both to the bank to get the transaction data as well as the provider for the mapping data.
+\section {OpenID implementation in the Real World}
+Now we will try to fit this implementation in our system, which includes Nykredit as the Bank, Signicat as the 3rd party, DTU as corporate customer and other government institutions as authorities.
+\subsection{Addition of the New User}
+Addition of the new user can happen as following:
+\begin{enumerate}
+	\item DTU registers the new user with the Nykredit giving them the user details and policies that should apply to the particular user regarding the account. 
+	\begin{enumerate}
+		\item Nykredit registers this new user with his User ID with the IMS system. Nykredit also add policy for the user in the IMS system.
+	\end{enumerate}
+	\item Nykredit issue a user credentials for the given user to DTU.
+	\item DTU then use this policy credentials to register the new user with Signicat. 
+	\begin{enumerate}
+		\item Signicat inquire about the user data with the authorities
+		\item Authorities verify the user data to Signicat
+	\end{enumerate}
+	\item After that Signicat issue final OpenID credentials for the IMS system.  This credential is then used to login to the IMS system by the new user.
+\end{enumerate}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{figures/OpenID-Real}
+	\caption{OpenID Registration for a new user}
+	\label{fig:OpenID-Real}
+\end{figure}
+
+\FloatBarrier
+\subsection{Addition of a New Customer}
+Addition of the new customer is almost same as addition of new user:
+\begin{enumerate}
+	\item An administrator goes to Nykredit to open a bank account on behalf of DTU 
+	\begin{enumerate}
+		\item Nykredit registers DTU as new customer in their internal system.
+		\item Nykredit register the DTU administrator with his User ID with the IMS system
+	\end{enumerate}
+	\item Nykredit issue user credentials for the  DTU administrator to himself.
+	\item Administrator then use these credentials to register himslef as owner of the new DTU account with Signicat. 
+	\begin{enumerate}
+		\item Signicat inquire about the data given in the credential with the authorities
+		\item Authorities verify the dta to Signicat
+	\end{enumerate}
+	\item After that Signicat issue final OpenID credential for the IMS system. This credential is then used to login to the IMS system by the administrator.
+\end{enumerate}
+\subsection{Technical Requirements}
+In this system DTU as a client doesn't need to change anything on their side to be a customer at Nykredit. All the system for DTU is web based where they can just add/remove users and also DTU users login to the system using the browser.
+\\
+\\Nykredit have to implement OpenID relying party service on their side. In this case they have to store sensitive data with the 3rd party. The account details and policies are stored at IMS.
+\\
+\\Signicat have to implement OpenID identity provider service on their side.
+\\\\
+IMS have to implement  OpenID identity provider service on their side.
 \section{Summary}
-This chapter described the IMS system setup using the OpenID system. We described how the system will be setup and how it will affect all the parties involved. We will analyze this system later in chapter 8.
+This chapter described the IMS system setup using the OpenID system. We described how the system will be setup and how it will affect all the parties involved.
 
