@@ -1,38 +1,42 @@
 \chapter{State of the art Survey}
 
-\section{Introduction}
-This chapter introduce all the different technologies currently available which deal with anonymity and privacy. Some of the technologies are already commercially available and being used in the industry, while some are still in research phase. We will give a brief introduction for all of them and brief idea how they can be used.
+This chapter introduce some of the technologies currently available, which deal with anonymity and privacy. Some of the technologies are already commercially available and being used in the industry, while some are still in research phase. We will give a brief introduction for all of them and brief idea how they can be used.
 
 
 \section{Definitions and Common Terminology}
 In this thesis, we have used some terminologies and definitions. Some of the important ones are given below:
-\subsection{Privacy}
+\begin{itemize}
+\item\textbf{Privacy}
 Privacy is the ability of an individual to control the distribution of information about himself. An individual should be able to choose which information about him should remain secret and which information can be revealed.
-\subsection{Anonymity}
+\item\textbf{Anonymity}
 Anonymity refers to ability of a user to not give any information about him at all to the system. An anonymous system doesn't have any identity of the user.
-\subsection{Pseudonym}
+\item\textbf{Pseudonym}
 Pseudonym is a name given to the user in pseudonymous systems. This name is given to hide the real identity of the user from the system. The system only knows the user by his pseudonym.
-\subsection{User}
+\item\textbf{User}
 User is the end user of the system. Its the person who will go online and get the services. In our system most of the time we refer user as the employee of the company who is accessing the services of the bank.
-\subsection{Bank}
+\item\textbf{Bank}
 Bank is the financial institution which provides online financial services to the user. In our system, we refer Nykredit as bank.
-\subsection{Third party}
+\item\textbf{Third party}
 A third party or trusted third party is the entity which is neither bank or the user in the system. A third party provides different services to banks or users and hence reducing the burden on them to setup all the infrastructure by themselves. In our system, Signical plays the role of the third party.
-\subsection{Service}
+\item\textbf{Service}
 Service is something that is provided to the user online by a system. It may include ability to login, check his account balance, Upload pictures, share spreadhseets etc.
-\subsection{Unlinkability}
+\item\textbf{Unlinkability}
 Unlinkability is the privacy property where its not possible to link 2 different entities to each other even though they are the same. 
-\\
-\\e.g. not be able to link 2 different sessions by the same user in the system.
-\subsection{Revocation}
-Revocation is the property where a user credential is revoked by user or some other authority. After revocation, this credential cannot be used for anything.
-\subsection{Partial Information Disclosure}
-Its the ability of a user to only disclose some partial information about himself to the system. e.g. a user might just want to disclose his last name to the system but not his full name.
-\subsection{Legal Requirement}
-A legal requirement is something that is required by the law. e.g. it may be required by the law for the bank to log all the customer data. Also sometimes in case of suspicious transactions bank maybe required legally to give the user identity to the relevant authorities.
-\subsection{Conditional Anonymity Removal}
-Its the ability of the system to remove anonymity of the user if some conditions that were set before are met. This is mainly used for escrow purposes.
 
+e.g. not be able to link 2 different sessions by the same user in the system.
+\item\textbf{Revocation}
+Revocation is the property where a user credential is revoked by user or some other authority. After revocation, this credential cannot be used for anything.
+\item\textbf{Partial Information Disclosure}
+Its the ability of a user to only disclose some partial information about himself to the system. e.g. a user might just want to disclose his last name to the system but not his full name.
+\item\textbf{Legal Requirement}
+A legal requirement is something that is required by the law. e.g. it may be required by the law for the bank to log all the customer data. Also sometimes in case of suspicious transactions bank maybe required legally to give the user identity to the relevant authorities.
+\item\textbf{Conditional Anonymity Removal}
+Its the ability of the system to remove anonymity of the user if some conditions that were set before are met. This is mainly used for escrow purposes.
+\item\textbf{Verifiable Encrytion}
+It is a type of encryption, in which encypted data can be verified i.e. someone who doesn't know the actual data can verify that the encrypted data is same as claimed by the person who encrypted it. e.g. if the person who is encrypting the data has to encrypt his key in it, it can be verified that he has encrypted his real key and not some garbage value.
+\item\textbf{Zero Knowledge Proof}
+It is a type of proof where prover is able to convince the verifier about validity of a statement without giving any other information about the statement except that its valid. e.g. if a user have to prove that he has a private key to a particular public key, he can prove it without giving away any other information about his private key.
+\end{itemize}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/Technologies}
@@ -181,7 +185,7 @@ ID Escrow in U-Prove is actually an extension to existing U-Prove technology. It
 	\item A special entity called Auditor is responsible for de-anonymization in case of some discrepancy or legal requirement
 	\item Threshold cryptography can be used in case of auditors and key can be split among multiple auditors.
 \end{itemize}
-\section{Summary}
+
 All these different technologies provide different level of anonymization in the system. Some of them are easy to integrate in existing technology, while some are still not mature enough. For our purposes from now on we focus on mainly 2 technologies:
 \begin{itemize}
 	\item OpenID
