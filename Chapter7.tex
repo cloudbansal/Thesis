@@ -1,0 +1,61 @@
+\chapter{Evaluation}
+This chapter will present the evaluation criteria for our system. After presenting the criteria we will evaluate 2 systems presented in Chapter 6 and 7.
+\section{Evaluation Criteria}
+Following are the evaluations criteria and project goals that we have setup for our system:
+\subsection{Unlinkability}
+We want 2 to unlink the real identity of the user from the transactions. A user should not have to give his real identity to the bank in order to get the services. Also 2 different sessions of the same user should be unlinkable i.e. it should not be possible to find out that 2 sessions are from same user or a different user.
+
+Being able to link real identity of the user with the transactions creates a lot of problems. Its possible for someone who has access to such data to learn about financial life of a given individual. So this property is desired to avoid such problems.
+\subsection{Escrow}
+It should be possible for authorities to get the real identity of the user in case of legal requirements or discrepancies. But still bank should not be able to get the real identities of the user.
+
+Providing anonymity is good but sometimes people take advantage of anonymity on internet. e.g. they might perform some illegal transactions at the bank, while they are anonymous. So Escrow property is required for such cases.
+\subsection{Minimal Technical Requirements}
+It should be easy to be a customer at the bank. User should not have to change a lot of systems on their side to be a customer at the bank. Also it should be easier for existing customers to continue using the services of the bank.
+
+In the end its all about customer. Customers want security but they don't want to sacrifice ease of use. It would be difficult for bank to keep the customers or get new customers if it means that they have to invest heavily in IT infrastructure just to be a customer at the bank. So this requirement is needed to make it easy for customers to get the services from the bank.
+\subsection{User awareness}
+User should be aware about the data they are sharing with the bank. Bank should have user consent before storing any data from the user.
+
+People are getting more and more aware about their privacy. They want to know what personal data is being stored by the service providers in order provide them with the services. This requirement takes care of the case where user knows exactly what data he is sharing with the bank.
+\subsection{Protection of Data}
+All the sensitive data about the user should be kept protected. Also all the bank related sensitive data e.g. account information, policies should remain secure.
+
+Keeping the data protected is a big challenge. If bank is not able to protect user data it gives them bad reputation in the market. Also sensitive business data is valuable to the bank. So bank doesn't want to give this data to anyone else.
+
+\section{OpenID based solution}
+Now we will evaluate our OpenID based solution as described in chapter 5. 
+\begin{enumerate}
+	\item{\textbf{Unlinkability}}
+	In OpenID based system all the transactions are logged using a pseudonym. Hence user's real identity is unlinked from the transactions. Also if the same user logs in again, he is given a different pseudonym and hence its not possible to relate 2 sessions with each other.
+	\item{\textbf{Escrow}}
+	In case authorities need to get the real identity behind a transaction there is escrow capability. The IMS system stores the mapping database from pseudonym to real identity of the user. The authorities need to go to the bank to get the transactions and then IMS provider to get the mapping data.
+	\item{\textbf{Minimal Technical Requirements}}
+	For the end user, there are not much technical requirements. They don't have to setup a special hardware to be a customer at the bank. All the interface is web based and hence can be used in any web browser. 
+	\item{\textbf{User Awareness}}
+	In OpenID based system user is told during authentication, what data about user is being shared with the bank. Also in case new data is needed user is asked about it.
+	\item{\textbf{Protection of Data}}
+	All the sensitive information about user personal identity resides with IMS. Also bank's business information such as account information and policy have to be stored at the IMS.
+\end{enumerate}
+\section{IDEMIX based solution}
+Now we will evaluate our IDEMIX based solution as described in chapter 6. 
+\begin{enumerate}
+	\item{\textbf{Unlinkability}}
+	In IDEMIX based system all the transactions are logged using a pseudonym from the IDEMIX token presented by the IMS. Hence user's real identity is unlinked from the transactions. Also if the same user logs in again,IMS creates a new token with different pseudonym and hence its not possible to relate 2 sessions with each other.
+	\item{\textbf{Escrow}}
+	As during creation of presentaton IDEMIX token, the real identity of the user is put in an inspectable field, so in case authorities need to get the real identity behind a pseudonym in transactions, they can just get it from the IDEMIX token from the bank.
+	\item{\textbf{Minimal Technical Requirements}}
+	For the end user, there are not much technical requirements. They don't have to setup a special hardware to be a customer at the bank. All the interface is web based and hence can be used in any web browser. 
+	\item{\textbf{User Awareness}}
+	IMS makes sure that user know what data about him is being shared with the bank in the presentation token. Also in case new data is needed user is asked about it.
+	\item{\textbf{Protection of Data}}
+	All the sensitive information about user personal identity resides with IMS. Bank's business information such as account information and policy have to be stored in the IDEMIX credential at IMS. But as only bank is able to open this information as its from a credential issued by the bank itself.
+\end{enumerate}
+\section{Discussion}
+We discussed our solutions and evaluations with Nykredit and Signicat. Though it seems promising but the problem is that its difficult to change the legacy systems. IDEMIX solution seems better in fulfilling the goals of the system but its still a new technology. To implement this system, a lot of data that Nykredit holds have to be moved out of Nykredit systems. Even though that is the goal of the system but seems like Nykredit is not able to give up all the data out yet. Some of their internal business processes still rely heavily on the business data stored at the premises. 
+
+Signicat on the other hand is really interested in the IDEMIX system. This will allow them to add one more service to their portfolio and hence strengthen their position in the market.
+
+After all the discussion we came to conclusion that even though the idea is revolutionary, maybe for Nykredit its better to take one step at a time. So instead of completely anonymizing the system, they just want to replace UserID with a constant pseudonym. They want to keep all the policy and account database with them for the time being and want IMS system to just replace UserID with a pseudonym for the banking purposes.
+
+In this chapter we evaluated 2 different pseudonym systems as discussed in chapter 5 and 6. After that we presented our discussion with the companies regarding these systems.

@@ -1,2 +1,205 @@
 \chapter{Appendix}
 \section{ABC4Trust IDEMIX Implemetation}
+\lstset{language=XML}
+\begin{lstlisting}[caption=IDEMIX Credential Specificataion]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!--
+This is a sample ABC4Trust credential specification
+-->
+
+<abc:CredentialSpecification xmlns:abc="http://abc4trust.eu/wp2/abcschemav1.0"
+Version="Version 1.0"
+KeyBinding="true"
+Revocable="true"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd">
+<abc:SpecificationUID>http://mybank/credential</abc:SpecificationUID>
+<abc:FriendlyCredentialName lang="en">Mybank IMS</abc:FriendlyCredentialName>
+<abc:DefaultImageReference>http://MyBank/img</abc:DefaultImageReference>
+<abc:AttributeDescriptions MaxLength="256">
+<abc:AttributeDescription Type="http://abc4trust.eu/wp2/abcschemav1.0/revocationhandle" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unsigned"/>
+<abc:AttributeDescription Type="FirstName" DataType="xs:string" Encoding="urn:abc4trust:1.0:encoding:string:utf-8">
+<abc:FriendlyAttributeName lang="en">Name</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeDescription Type="LastName" DataType="xs:string" Encoding="urn:abc4trust:1.0:encoding:string:utf-8">
+<abc:FriendlyAttributeName lang="en">Lastname</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeDescription Type="Birthday" DataType="xs:date" Encoding="urn:abc4trust:1.0:encoding:date:unix:signed">
+<abc:FriendlyAttributeName lang="en">Birthday</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeDescription Type="UserID" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unsigned">
+<abc:FriendlyAttributeName lang="en">User id</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeDescription Type="AccountID" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unsigned">
+<abc:FriendlyAttributeName lang="en">Account ID</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeDescription Type="Withdraw" DataType="xs:boolean" Encoding="urn:abc4trust:1.0:encoding:boolean:unsigned">
+<abc:FriendlyAttributeName lang="en">Withdraw</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeDescription Type="Transfer" DataType="xs:boolean" Encoding="urn:abc4trust:1.0:encoding:boolean:unsigned">
+<abc:FriendlyAttributeName lang="en">Transfer</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+</abc:AttributeDescriptions>
+</abc:CredentialSpecification>
+\end{lstlisting}
+\begin{lstlisting}[caption=IDEMIX Parameters Input]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<abc:IssuerParametersInput 
+xmlns:abc="http://abc4trust.eu/wp2/abcschemav1.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd"
+Version="1.0">
+<abc:ParametersUID>http://mybank/issuance:idemix</abc:ParametersUID>
+<abc:FriendlyIssuerDescription lang="en">Issuer parameters for Mybank IMS</abc:FriendlyIssuerDescription>
+<abc:AlgorithmID>urn:abc4trust:1.0:algorithm:idemix</abc:AlgorithmID>
+<abc:CredentialSpecUID>http://mybank/credential</abc:CredentialSpecUID>
+<abc:HashAlgorithm>urn:abc4trust:1.0:hashalgorithm:sha-256</abc:HashAlgorithm>
+<abc:RevocationParametersUID>http://mybank/revocation</abc:RevocationParametersUID>
+</abc:IssuerParametersInput>
+\end{lstlisting}
+\begin{lstlisting}[caption=Issuance Policy and Attributes]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<abc:IssuancePolicyAndAttributes 
+xmlns:abc="http://abc4trust.eu/wp2/abcschemav1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd">
+
+<abc:IssuancePolicy Version="1.0">
+<abc:PresentationPolicy PolicyUID="http://mybank/issuance/policy">
+<abc:Pseudonym Exclusive="true" Scope="http://mybank" Established="false" Alias="#nym"/>
+<abc:Message>
+<abc:Nonce>KNsRu9cGzkaeabogeRVV</abc:Nonce>
+<abc:ApplicationData>
+<abc:TestApplicationData>
+<abc:Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xsi:type="xs:string">Some data</abc:Data>
+</abc:TestApplicationData>
+</abc:ApplicationData>
+</abc:Message>
+</abc:PresentationPolicy>
+
+<abc:CredentialTemplate SameKeyBindingAs="#nym">
+<abc:CredentialSpecUID>http://mybank/credential</abc:CredentialSpecUID>
+<abc:IssuerParametersUID>http://mybank/issuance:idemix</abc:IssuerParametersUID>
+<abc:UnknownAttributes/>
+</abc:CredentialTemplate>
+</abc:IssuancePolicy>
+
+<abc:Attribute>
+<abc:AttributeUID>-5027215341191833963</abc:AttributeUID>
+<abc:AttributeDescription DataType="xs:string" Encoding="urn:abc4trust:1.0:encoding:string:sha-256" Type="FirstName">
+<abc:FriendlyAttributeName lang="en">first name</abc:FriendlyAttributeName>
+<abc:FriendlyAttributeName lang="da">fornavn</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">John</abc:AttributeValue>
+</abc:Attribute>
+<abc:Attribute>
+<abc:AttributeUID>-2715953330829768453</abc:AttributeUID>
+<abc:AttributeDescription Type="FirstName" DataType="xs:string" Encoding="urn:abc4trust:1.0:encoding:string:utf-8">
+<abc:FriendlyAttributeName lang="en">Name</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Doe</abc:AttributeValue>
+</abc:Attribute>
+<abc:Attribute>
+<abc:AttributeUID>-2231744817504418816</abc:AttributeUID>
+<abc:AttributeDescription Type="Birthday" DataType="xs:date" Encoding="urn:abc4trust:1.0:encoding:date:unix:signed">
+<abc:FriendlyAttributeName lang="en">Birthday</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">1990-07-16Z</abc:AttributeValue>
+</abc:Attribute>
+<abc:Attribute>
+<abc:AttributeUID>-2231744817504418826</abc:AttributeUID>
+<abc:AttributeDescription Type="UserID" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unsigned">
+<abc:FriendlyAttributeName lang="en">User id</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">123</abc:AttributeValue>
+</abc:Attribute>
+<abc:Attribute>
+<abc:AttributeUID>-1231744817504418817</abc:AttributeUID>
+<abc:AttributeDescription Type="AccountID" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unix:unsigned">
+<abc:FriendlyAttributeName lang="en">Account ID</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:integer">23784638726</abc:AttributeValue>
+</abc:Attribute>
+<abc:Attribute>
+<abc:AttributeUID>-1231744817504418818</abc:AttributeUID>
+<abc:AttributeDescription Type="Withdraw" DataType="xs:boolean" Encoding="urn:abc4trust:1.0:encoding:boolean:unix:unsigned">
+<abc:FriendlyAttributeName lang="en">Withdraw</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:boolean">1</abc:AttributeValue>
+</abc:Attribute>
+<abc:Attribute>
+<abc:AttributeUID>-1231744817504418819</abc:AttributeUID>
+<abc:AttributeDescription Type="Transfer" DataType="xs:integer" Encoding="urn:abc4trust:1.0:encoding:integer:unix:unsigned">
+<abc:FriendlyAttributeName lang="en">Transfer</abc:FriendlyAttributeName>
+</abc:AttributeDescription>
+<abc:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:boolean">1</abc:AttributeValue>
+</abc:Attribute>
+</abc:IssuancePolicyAndAttributes>
+\end{lstlisting}
+\begin{lstlisting}[caption=IDEMIX Presentation Policy]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- This is a sample ABC4Trust presentation policy for... -->
+
+<abc:PresentationPolicyAlternatives
+xmlns:abc="http://abc4trust.eu/wp2/abcschemav1.0"
+Version="1.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd">
+<abc:PresentationPolicy
+PolicyUID="http://mybank/presentation">
+<abc:Message>
+<abc:ApplicationData>
+Corporate Account at Mybank
+</abc:ApplicationData>
+</abc:Message>
+<abc:Pseudonym Exclusive="xs:boolean"? Scope "xs:string"Established="xs:boolean"? Alias="xs:anyURI"? SameKeyBindingAs="xs:anyURI"?>
+<abc:PseudonymValue> </abc:PseudonymValue>?
+</abc:Pseudonym>*
+<abc:Credential Alias="#token">
+<abc:CredentialSpecAlternatives>
+<abc:CredentialSpecUID>http://mybank/credential</abc:CredentialSpecUID>
+</abc:CredentialSpecAlternatives>
+<abc:IssuerAlternatives>
+<abc:IssuerParametersUID>http://mybank/issuance:idemix</abc:IssuerParametersUID>
+</abc:IssuerAlternatives>
+<abc:DisclosedAttribute AttributeType="UserID" >
+<abc:InspectorAlternatives>
+<abc:InspectorPublicKeyUID>http://mybank/inspection</abc:InspectorPublicKeyUID>
+</abc:InspectorAlternatives>
+<abc:InspectionGrounds>Reveal UserID for inspection.</abc:InspectionGrounds>
+</abc:DisclosedAttribute>
+</abc:Credential>
+<abc:AttributePredicate Function="urn:oasis:names:tc:xacml:1.0:function:integer-equal">
+<abc:Attribute CredentialAlias="#token" AttributeType="AccountID" />
+<abc:ConstantValue>23784638726</abc:ConstantValue>
+</abc:AttributePredicate>
+<abc:AttributePredicate Function="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+<abc:Attribute CredentialAlias="#token" AttributeType="Withdraw" />
+<abc:ConstantValue>1</abc:ConstantValue>
+</abc:AttributePredicate>
+<abc:AttributePredicate Function="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+<abc:Attribute CredentialAlias="#token" AttributeType="Transfer" />
+<abc:ConstantValue>1</abc:ConstantValue>
+</abc:PresentationPolicy>
+</abc:PresentationPolicyAlternatives>
+\end{lstlisting}
+\begin{lstlisting}[caption=IDEMIX Revocation References]
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<abc:RevocationReferences 
+xmlns:abc="http://abc4trust.eu/wp2/abcschemav1.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://abc4trust.eu/wp2/abcschemav1.0 ../../../../../../../../abc4trust-xml/src/main/resources/xsd/schema.xsd">
+<abc:RevocationInfoReference ReferenceType="http">
+<abc:References>http://localhost:9500/revocation/updaterevocationinformation</abc:References>
+</abc:RevocationInfoReference>
+<abc:NonRevocationEvidenceReference ReferenceType="http">
+<abc:References>http://localhost:9500/revocation/generatenonrevocationevidence</abc:References>
+</abc:NonRevocationEvidenceReference>
+<abc:NonRevocationEvidenceUpdateReference ReferenceType="http">
+<abc:References>http://localhost:9500/revocation/generatenonrevocationevidenceupdate</abc:References>
+</abc:NonRevocationEvidenceUpdateReference>
+</abc:RevocationReferences>
+\end{lstlisting}
