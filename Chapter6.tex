@@ -106,18 +106,18 @@ Addition of the new customer is almost same as addition of new user:
 	\item An administrator goes to Nykredit to open a bank account on behalf of DTU 
 	\begin{enumerate}
 		\item Nykredit registers DTU as new customer in their internal system.
-		\item Nykredit register the DTU administrator with his User ID with the IMS system
+		\item Nykredit registers the DTU administrator with his User ID with the IMS system
 	\end{enumerate}
 	\item Nykredit issue an IDEMIX policy credential for the  DTU administrator to himself. This credential contains the policy information and account information for the administrator.
 	\item Administrator then use this policy credential to register himslef as owner of the new DTU account with Signicat. 
 	\begin{enumerate}
 		\item Signicat inquire about the data given in the credential with the authorities
-		\item Authorities verify the dta to Signicat
+		\item Authorities verify the data to Signicat
 	\end{enumerate}
 	\item After that Signicat issue final IDEMIX credential for the IMS system. This credential is then used to create pseudonym IDEMIX tokens for the administrator. 
 \end{enumerate}
 \subsection{Technical Requirements}
-In this system DTU as a client doesn't need to change anything on their side to be a customer at Nykredit. All the system for DTU is web based where they can just add/remove users and also DTU users login to the system using the browser.
+In this system DTU as a client does not need to change anything on their side to be a customer at Nykredit. All the system for DTU is web based where they can just add/remove users and also DTU users login to the system using the browser.
 \\
 \\Nykredit have to implement IDEMIX issuer service on their side to issue IDEMIX Policy credential. This is done so that Nykredit doesn’t have to store the sensitive data at the 3rd party. Use of this credential ensures that this data remains safe. Nykredit also have to implement IDEMIX verifier service to verify the user identity.
 \\
