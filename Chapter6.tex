@@ -195,10 +195,24 @@ For user authentication, oly DTU employee, IMS and Nykredit systems are needed. 
 	\end{center}
 	\item Nykredit verifies the token and authenticates the user.
 	\begin{center}
-		$N -> D : {pseudonym,status}$
+		$N -> D : {pseudonym,session_secret,status}$
+	\end{center}
+	Where $session_secret$ is the secret value that Nykredit established with the user. This value is sent in subsequent requests by the user to Nykredit.
+\end{enumerate}
+\subsection{User Transcation}
+The user transaction happens in the same manner the current system. We assume that user is already authenticated using the steps above. The only entities involved are DTU and Nykredit in this case:
+\begin{enumerate}
+\item DTU user sends the transaction request to Nykredit.
+	\begin{center}
+		$D -> N : {session_secret,transaction_request}$
+	\end{center}
+\item Nykredit performs the transcation and sends the result back.
+	\begin{center}
+		$N -> D : {transaction_request,status}$
 	\end{center}
 \end{enumerate}
 
-This chapter described the IMS system setup using the IDEMIX system. We described how the system would be setup and how it would affect all the parties involved.
+
+This chapter described the IMS system setup using the IDEMIX system. We described how the system would be setup and how it would affect all the parties involved. The API for the IDEMIX services can be found in \textit{Appendix A}.
 
 
