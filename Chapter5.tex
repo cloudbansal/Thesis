@@ -1,7 +1,7 @@
 \chapter{OpenID Based Solution}
 In this chapter we will provide a solution using OpenID based IMS. We will give more details about how this system can be implemented, and how it will behave for the end users.
 \section{OpenID IMS}
-We can replace IMS with \textit{OpenID based IMS} in our pseudonymous system. This system will take the user's credentials and then send the pseudonym, account ID and policy to the bank. This IMS can be controlled by a separate identity inside the bank or by a 3rd party.
+We can replace IMS with \textit{OpenID based IMS} in our pseudonymous system as illustrated in figure \ref{fig:OpenID}. This system will take the user's credentials and then send the pseudonym, account ID and policy to the bank. This IMS can be controlled by a separate identity inside the bank or by a 3rd party.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/OpenID}
@@ -88,7 +88,8 @@ Addition of the new user can happen as follows:
 		\item Signicat inquires about the user data with the authorities.
 		\item The authorities verify the user data to Signicat.
 	\end{enumerate}
-	\item After that Signicat issues the final OpenID credentials for the IMS system.  These credentials are then used to login to the IMS system by the new user.
+	\item Signicat issues the final OpenID credentials for the IMS system.  These credentials are then used to login to the IMS system by the new user.
+	The flow can be seen in figure \ref{fig:OpenID-Real}.
 \end{enumerate}
 \begin{figure}[h]
 	\centering
@@ -112,7 +113,7 @@ Addition of a new customer is almost the same as the addition of a new user:
 		\item Signicat inquires about the data given in the credential with the authorities.
 		\item The authorities verify the data to Signicat.
 	\end{enumerate}
-	\item After that, Signicat issues the final OpenID credentials for the IMS system. These credentials are then used to login to the IMS system by the administrator.
+	\item Signicat issues the final OpenID credentials for the IMS system. These credentials are then used to login to the IMS system by the administrator.
 \end{enumerate}
 \subsection{Technical Requirements}
 In this system, DTU as a client doesn't need to change anything on their side to be a customer at Nykredit. All the system for DTU is web based, where they can just add/remove users. Moreover, DTU users login to the system using the normal web browser.
