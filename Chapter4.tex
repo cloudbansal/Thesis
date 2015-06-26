@@ -30,14 +30,14 @@ In order to provide privacy to the users, we suggest a new pseudonym system as s
 \caption{Pseudonym Banking System}
 \label{fig:Pseudonym}
 \end{figure}
-In our system we modify the Authentication service and replace it with an Identity Mapping System (IMS)"
+In our system we modify the authentication service and replace it with an \textit{Identity Mapping System (IMS)}
 \begin{itemize}
-	\item Instead of giving the User ID to the bank we actually replace it with a pseudonym.
-	\item The IMS sends the policy as well as the account ID to the bank.	
-	\item The bank then uses this information to provide servicea to the customer.
+	\item Instead of giving the \textit{User ID} to the bank we actually replace it with a \textit{pseudonym}.
+	\item The IMS sends the \textit{policy} as well as the \textit{account ID} to the bank.	
+	\item The bank then uses this information to provide services to the customer.
 	\item The bank doesn’t need to store the mapping databases.
 \end{itemize}
-The IMS can either be in the bank, in a separate department,it can be managed by a 3rd party. This way the bank doesn’t need to know the exact identity of the user to provide them with the services.
+The IMS can either be in the bank, in a separate department,or it can be managed by a 3rd party. This way the bank doesn’t need to know the exact identity of the user to provide them with the services.
 Also, the bank can still store personal details of the user in case of the legal requirement, but it can be stored at a separate place as it is not needed for day to day operation of the bank.
 \section{Properties}
 The privacy properties mentioned below are desirable in our pseudonym system:
@@ -48,11 +48,10 @@ The privacy properties mentioned below are desirable in our pseudonym system:
 	\item \textbf{Revocation :} It should be easy to revoke any user. Also, it should be easy to check whether a certain user is revoked or not. 
 \end{itemize}
 \section{User Privacy}
-As in our system the bank never gets the real identity of the user, the user anonymity to the bank is maintained. Also bank doesn't need to store the policies for the users as its all coming from the IMS. As a result, it decreases a lot of load from the bank to store such data. IMS service adds a layer of pseudonymity in the system. 
+As in our system the bank never gets the real identity of the user, the user's anonymity to the bank is maintained. Also, the bank doesn't need to store the policies for the users as its all coming from the IMS. As a result, it decreases a lot of load from the bank to store such data. The IMS service adds a layer of pseudonymity in the system. 
 
 \section{Generic Prototype}
-Now we will talk about a generic prototype based on our proposed system 
-For end user it doesn't change anything. End user authenticates to the IMS and then IMS creates a pseudonym for the user. This pseudonym is then used by the bank for providing the services to the customer.
+We will now talk about a \textit{generic prototype} based on our proposed system. For the end user it doesn't change anything. The end user authenticates to the IMS and then the IMS creates a pseudonym for the user. This pseudonym is then used by the bank to provide services to the end user.
 \subsection{Authentication}
 \begin{figure}[h]
 	\centering
@@ -68,13 +67,13 @@ For end user it doesn't change anything. End user authenticates to the IMS and t
 \end{figure}	
 User authentication happens as follows:
 \begin{itemize}
-	\item User goes to the bank login page.
-	\item User puts his credentials in the login system.
-	\item User credentials are verified by IMS and then user is redirected to his account page.
+	\item The user goes to the bank login page.
+	\item The user puts his credentials in the login system.
+	\item The user's credentials are verified by the IMS and then he is redirected to his account page.
 \end{itemize}
-One thing to note that is that as traditional user, this doesn't change anything on the user end. User still use the same process to get access to his account.
+One thing to note here is that for a traditional user, this doesn't change anything on the user's end. The user still uses the same process to get access to his account.
 
-As we can see in \ref{fig:Logged}, after authentication user is logged in with a pseudonym.	
+As we can see in \ref{fig:Logged}, after authentication, the user is logged in with a pseudonym.	
 \subsection{User Information}
 \begin{figure}[h]
 	\centering
@@ -88,9 +87,9 @@ As we can see in \ref{fig:Logged}, after authentication user is logged in with a
 	\caption{User Information - Session 2}
 	\label{fig:Account2}
 \end{figure}
-When we go to user information page we can see the information that is given to the bank by IMS for a given user.
+When we go to the user information page we can see the information that is given to the bank by the IMS for a given user.
 
-In our case it is:
+In our system it is:
 \begin{itemize}
 	\item Pseudonym
 	\item Account ID
@@ -102,7 +101,7 @@ In our case it is:
 		\item Transfer Permission
 	\end{itemize}
 \end{itemize}
-As we can see from figure \ref{fig:Account1} and figure \ref{fig:Account2}, 2 different sessions of the same user are logged in with different pseudonym. Bank have no way to find out that its the same user who have logged into different sessions.
+As we can see from the figure \ref{fig:Account1} and the figure \ref{fig:Account2}, two different sessions of the same user are logged in with different pseudonyms. The bank has no way to find out that it is the same user who has logged into different sessions.
 
 \subsection{Transactions}
 \begin{figure}
@@ -111,14 +110,14 @@ As we can see from figure \ref{fig:Account1} and figure \ref{fig:Account2}, 2 di
 	\caption{New Transactions}
 	\label{fig:New}
 \end{figure}
-In our prototype user is allowed to do 2 types of transactions
+In our prototype the user is allowed to do two types of transactions:
 \begin{itemize}
 	\item Debit
 	\item Credit
 \end{itemize}
-All the transactions that are done by the user are logged in with the pseudonym; with which user has been logged in to the system.
+All the transactions that are done by the user are saved with the pseudonym. This pseudonym is the same with which the user has been logged in to the system.
 
-Figure \ref{fig:New} shows the new transactions page in the system where user is allowed to do the transactions.
+Figure \ref{fig:New} shows the \textit{new transactions} page in the system where the user is allowed to do the transactions.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/Transactions}
@@ -126,7 +125,7 @@ Figure \ref{fig:New} shows the new transactions page in the system where user is
 	\label{fig:Transactions}
 \end{figure}
 
-Figure \ref{fig:Transactions} shows all the transactions that has been done on the given account by users. As we can see, all the transactions are saved with the pseudonym of the users.
+Figure \ref{fig:Transactions} shows all the transactions that have been done on the given account by the users. As we can see, all the transactions are saved with the pseudonyms of the users.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{figures/Download}
@@ -139,11 +138,11 @@ Figure \ref{fig:Transactions} shows all the transactions that has been done on t
 	\caption{Downloaded Transactions File}
 	\label{fig:File}
 \end{figure}	
-Our system also allow the users to download the transactions from the download transactions page as shown in figure \ref{fig:Download}. These transactions are stored in a csv file and then can be seen as in figure \ref{fig:File}.
+Our system also allows the users to download the transactions from the \textit{download transactions} page as shown in figure \ref{fig:Download}. These transactions are stored in a csv file. This csv file can be opened by the user as can be seen in the figure \ref{fig:File}.
 \FloatBarrier
-In this chapter we presented our pseudonym system. Also we have given some certain privacy properties that our pseudonym system should be able to fulfill. Our generic system works with pseudonyms and in the next chapter we will talk about how we can replace our Identity Mapping System with OpenID and IDEMIX for our purposes
+In this chapter we presented our pseudonym system. Also we have given some certain privacy properties that our pseudonym system should be able to fulfill. Our generic system works with pseudonyms and in the next chapter we will talk about how we can replace our Identity Mapping System with OpenID and IDEMIX.
 
-For our purposes we have decided to take case of 2 different systems for our IMS
+We have decided to analyze two different systems for our IMS:
 \begin{itemize}
 	\item OpenID
 	\item IDEMIX
