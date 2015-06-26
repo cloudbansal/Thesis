@@ -1,6 +1,6 @@
 \chapter{Application Scenario}
 
-This chapter will discuss the information flow of the current system. We will present our understating of the current banking system. We will also give different types of data that exist in the current system and the different operations that are necessary to support the system.
+This chapter will discuss the \textit{information flow} of the current system. We will present our understating of the current banking system. We will also give different types of data that exist in the current system and the different operations that are necessary to support the system.
 \section{Information Flow}
 \begin{figure}[h]
 	\centering
@@ -12,10 +12,11 @@ As show in figure \ref{fig:Flow} a person has different information associated w
 \\
 \\To Nykredit it can be:
 \begin{itemize}
-	\item Personal
-	 \\This Personal ID can be one of the following identifiers:
+	\item Personal ID
+	 
+	 This Personal ID can be one of the following identifiers:
 	\begin{itemize}
-		\item	External ID (e.g. NemID)
+		\item External ID (e.g. NemID)
 		\item Internal ID (e.g. login credentials of the bank)
 	\end{itemize}
 \item Account Data
@@ -31,23 +32,23 @@ A company has the following information that it might share with Nykredit:
 	\item Account Data
 	\item Authorized Person ID
 \end{itemize}
-This Authorized Person ID is the identifier that is used by the authorized person on behalf of the company. This can be stored in some database where it is matched to the Personal ID of the person.
-\\
-\\The Authorized Person ID can either be the same identifier as the Personal ID, the Company ID or a different identifier that can be authenticated. 
-\\
-\\In case the Personal ID is used as the Authorized Person ID, it gives Nykredit some additional capabilities:
+This \textit{Authorized Person ID} is the identifier that is used by the authorized person on behalf of the company. This can be stored in some database where it is matched to the Personal ID of the person.
+
+The Authorized Person ID can either be the same identifier as the Personal ID, the Company ID or a different identifier that can be authenticated. 
+
+In case the Personal ID is used as the Authorized Person ID, it gives Nykredit some additional capabilities:
 \begin{itemize}
 \item Nykredit can use this information to recruit new customers. If the authorized person is not a customer before, Nykredit can use this info to contact them.
-\item If the person is already a customer, then Nykredit can use this information to provide additional services to him on his personal account, so as to influence the authorized person for his decisions regarding the company's account (similar to the way airlines reward frequent flyers).
+\item If the person is already a customer, then Nykredit can use this information to provide additional services to him on his \textit{personal account}, so as to influence the authorized person for his decisions regarding the company's account (similar to the way airlines reward frequent flyers).
 \item As Nykredit already knows about company accounts, the performance of the company might influence their decision regarding the private account of the employee (e.g. it may be difficult for a person to take out a mortgage if Nykredit knows that the company they work for is in financial difficulties).
-\item In the case where the customer is accessing Nykredit services on behalf of a smaller financial institution, the capability of matching the authorized ID to Personal ID gives Nykredit a chance to recruit this customer away from the smaller financial institutions.
+\item In the case where the customer is accessing Nykredit services on behalf of a smaller financial institution, the capability of matching the authorized ID to the Personal ID gives Nykredit a chance to recruit this customer away from the smaller financial institutions.
 \end{itemize}
-While good corporate governance at Nykredit would prevent these issues, it is desired to completely and demonstratively remove the link between Personal ID and Authorized Person ID. This, however, creates difficulties with respect to regulatory requirements for accountability at Nykredit and KYC, AML, “Hvidvaskningsloven, etc., so there must be some way to map the identifier used in a financial transaction to a real person, i.e. map a given Authorized Person ID to a Personal ID.
+While good corporate governance at Nykredit would prevent these issues, it is desired to completely and demonstratively remove the link between the Personal ID and the Authorized Person ID. This, however, creates difficulties with respect to regulatory requirements for accountability at Nykredit and KYC, AML, “Hvidvaskningsloven, etc., so there must be some way to map the identifier used in a financial transaction to the real person, i.e. map a given Authorized Person ID to a Personal ID.
 
 \section{Separation of Identities}
-A way to remove the link between Personal ID and Authorized Person ID is to use separate IDs and to maintain a database which links the Authorized Person ID back to the Personal ID. This database can be protected in different ways, so that the information can be used only in case legal authorities need to link the two IDs.
-\\
-\\This database can be maintained at 3 places :
+A way to remove the link between the Personal ID and the Authorized Person ID is to use separate IDs and to maintain a database which links the Authorized Person ID back to the Personal ID. This database can be protected in different ways, so that the information can be used only in case legal authorities need to link the two IDs.
+
+This database can be maintained at 3 places :
 \begin{itemize}
 	\item Company 
 	\item Nykredit
