@@ -127,7 +127,7 @@ IMS have to implement IDEMIX user service to create the IDEMIX tokens for the us
 \section{High Level Protocol Description}
 In this section, we will give protocol description of the IDEMIX based system. This is a high level description of the protocol and full details can be found in \cite{camenisch2001efficient}.
 
-We assume that all the systems are secured and all the communication within them is encrypted. Let $Cred_{I,U}(data1,data2)$ be an IDEMIX credential issued by issuer I to user U. We define DTU employee as entity D, Nykredit as entity N, IMS as entity I, Signicat as entity S and authorities as entity A. Also the notation
+We assume that all the systems are secured and all the communication within them is encrypted. Let $Cred_{I,U}(data1,data2,...)$ be an IDEMIX credential issued by issuer I to user U. We define DTU employee as entity D, Nykredit as entity N, IMS as entity I, Signicat as entity S and authorities as entity A. Also the notation
 \begin{center}
 $A->B : \{m\}$
 \end{center}
@@ -137,11 +137,11 @@ We take 3 cases:
 \begin{enumerate}
 \item User Registration
 \item User Authentication
-\item User transaction in
+\item User transaction
 \end{enumerate}
 	
 \subsection{User Registration}
-The protocol works like this:
+The first part of protocol is the user registration. It involves all the parties in the system. The details of the protocol are as below:
 \begin{enumerate} 
 \item 	Let  $username$ be the login name of the new user that DTU wants to give access to their account, $account\_id$ be the account number of DTU account with Nykredit and $policy_D$ be the policy defined by the DTU for the user on their account. DTU sends this information to the bank for the user registration.
 
@@ -161,12 +161,22 @@ The protocol works like this:
 	\begin{center}
 		$N -> D : \{username,password,Cred_N(username,account\_id,policy_N)\}$
 	\end{center}	
-Where $policy_N$ is the policy created by Nykredit for the user for the given account. $Cred_N(username,account\_id,policy_N)$ is the IDEMIX credential issued by Nykredit for the user with given username.
-\item 
+Where $policy_N$ is the policy created by Nykredit for the user for the given account. It is a mix of the policy given ty the DTU and also some internal Bank policies. $Cred_N(username,account\_id,policy_N)$ is the IDEMIX credential issued by Nykredit for the user with given username.
+\item DTU sends the user data and credential given by Nykredit to Signicat. This user data may contain \textit{real name,CPR nr,address,contact information} etc. for the user. 
+\begin{center}
 	$D -> S : \{username,userdata,Cred_N(username,account\_id,policy_N)\}$
-\item
+\end{center}
+\item Signicat verifies the user data with the authorities and then issue its own credential $Cred_S(userdata,Cred_N(account\_id,policy_N))$ for the user. This credential contains data from the Nykredit credential $Cred_N(account\_id,policy_N))$ also. This makes sure that Signicat is able to issue the credential over parameters given by Nykredit credential but have no access to the data inside.
+
+Signicat sends this data to IMS system and user is registered with his credential in the IMS system.
+\begin{center}
 	$S -> I : \{username,Cred_S(userdata,Cred_N(account\_id,policy_N))\}$
+\end{center}
+User can now login to the system with IMS using his username and password.
 \end{enumerate}
+
+\subsection{User Authentication}
+
 
 This chapter described the IMS system setup using the IDEMIX system. We described how the system would be setup and how it would affect all the parties involved.
 
