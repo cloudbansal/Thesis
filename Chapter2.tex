@@ -3,13 +3,13 @@
 This chapter introduces some of the technologies currently available that deal with anonymity and privacy. Some of the technologies are already commercially available and being used in the industry, while others are still in research phase. We will give a brief introduction for all of them and a brief idea of how they can be used.
 
 \section{Definitions and Common Terminology}
-Below are the main terminologies and definitions used in this thesis:
+Below are the main terminologies and definitions used in this thesis. Some of the terms are taken from \cite{goldberg2000pseudonymous}:
 \begin{itemize}
 \item\textbf{Privacy :}
 It is the ability of an individual to control the distribution of information about himself. An individual should be able to choose which information about him should remain secret and which information can be revealed.
-\item\textbf{Anonymity :}
+\item\textbf{Anonymity\cite{Anonymity} :}
 It refers to the ability of a user to not give any information about him at all to the system. It is the state of not being identifiable in the system. An anonymous system doesn't have any identity of the user.
-\item\textbf{Pseudonym :}
+\item\textbf{Pseudonym\cite{Pseudonyms} :}
 It is a name given to the user in pseudonymous systems. This name is given to hide the real identity of the user from the system. The system only knows the user by his pseudonym.
 \item\textbf{User :}
 It is the end user of the system. It is the person who will go online and get the services. In our system, most of the time, we refer to user as the employee of the company, who is accessing the services of the bank.
@@ -30,9 +30,9 @@ It is the ability of a user to only disclose some partial information about hims
 It is something that is required by law. e.g. it may be required by law that the bank logs all the customer data. Also sometimes in case of suspicious transactions the bank may be required legally to give the user identity to the relevant authorities.
 \item\textbf{Conditional Anonymity Removal :}
 It is the ability of the system to remove anonymity of the user if some conditions that were set before are met. This is mainly used for escrow purposes.
-\item\textbf{Verifiable Encrytion :}
+\item\textbf{Verifiable Encrytion{\cite{VE}} :}
 It is a type of encryption in which encrypted data can be verified i.e. someone who doesn't know the actual data can verify that the encrypted data is the same as claimed by the person who encrypted it. e.g. if the person who is encrypting the data has to encrypt his key in it, it can be verified that he has encrypted his real key and not some garbage value.
-\item\textbf{Zero Knowledge Proof :}
+\item\textbf{Zero Knowledge Proof\cite{ZK}\cite{feige1988zero} :}
 It is a type of proof where the prover is able to convince the verifier that a statement is valid without giving any other information about the statement except that it is valid. e.g. if a user has to prove that he has the private key to a particular public key, he can prove it without giving away any other information about his private key.
 \end{itemize}
 \section{Technologies}
@@ -50,30 +50,30 @@ After getting the requirements and based on our terminology we looked at the cur
 	\label{fig:Technologies}
 \end{figure}
 \section{Secure Multi-Party Computing}
-These technologies are the ones which involve multiple parties to do computations. It is a subfield of cryptography which involves multiple parties getting an input and compute a joint function on them while keeping these inputs private. We basically looked at 2 technologies of interest here:
+These technologies are the ones which involve multiple parties to do computations\cite{goldreich1998secure}. It is a subfield of cryptography which involves multiple parties getting an input and compute a joint function on them while keeping these inputs private. We basically looked at 2 technologies of interest here:
 \subsection{Homomorphic Encryption}
-Homomorphic encryption is a type of encryption where certain arithmetic operations can be performed on the ciphertext so that when the resultant ciphertext is decrypted, the decrypted text is the same as if the operations were performed on the plaintext. This is a new field of cryptography and is very useful where we need some parties to perform such operations without revealing the underlying data to those parties. Homomorphic encryption is also useful for the chaining of different services without exposing data to any of those services.
+\textit{Homomorphic encryption}\cite{rappe2005homomorphic} is a type of encryption where certain arithmetic operations can be performed on the \textit{ciphertext} so that when the resultant ciphertext is decrypted, the decrypted text is the same as if the operations were performed on the \cite{plaintext}. This is a new field of cryptography and is very useful where we need some parties to perform such operations without revealing the underlying data to those parties. Homomorphic encryption is also useful for the chaining of different services without exposing data to any of those services.
 \subsection{Group Signature}
-A group signature is a scheme which allows a member of the group to sign the message on behalf of the group but anonymously. To outsiders the message has been signed by someone from the group but the exact identity of the person is now known. Also if the same member signs 2 different messages it is not possible to know if the message is signed by the same member. There is a notion of group manager in these scheme. Group manager is someone who manages the membership to the group. He can add/remove members from the group, find out who actually signed the message from the group. This scheme is useful where the only thing that needs to be validated is that a certain person is part of the group, but his real identity is not required.
+A \textit{group signature}\cite{ateniese2000practical} is a scheme which allows a member of the group to sign the message on behalf of the group but anonymously. To outsiders the message has been signed by someone from the group but the exact identity of the person is now known. Also if the same member signs 2 different messages; it is not possible to know if the message is signed by the same member or 2 different members. There is a notion of \textit{group manager} in these scheme. Group manager is someone who manages the membership to the group. He can add/remove members from the group, find out who actually signed the message from the group. This scheme is useful where the only thing that needs to be validated is that a certain person is part of the group, but his real identity is not required.
 \section{Escrow Technologies}
-Escrow technologies are those which are helpful in escrow purposes i.e. getting real data/identity later on in time from encrypted data if needed. We look at the 2 following technologies:
+\textit{Escrow technologies} are those which are helpful in escrow purposes i.e. getting real data/identity later on in time from encrypted data if needed. We look at the 2 following technologies:
 \subsection{Secure Logging}
-Secure logging is the process of saving the data in a secure manner, as saved data is really crucial and vulnerable to attacks. We need to make sure that the data is saved securely and its integrity is protected. This can be done in several ways. One way is to encrypt all the logs while storing them so that even if someone gets hold of the logs, they can't use them without having access to the decryption key. Another way is to store logs at a third party after encrypting them. For escrow purposes these logs can be decrypted later on with the decryption key.
+\textit{Secure logging}\cite{accorsi2006relationship} is the process of saving the data in a secure manner, as saved data is really crucial and vulnerable to attacks. We need to make sure that the data is saved securely and its integrity is protected. This can be done in several ways. One way is to encrypt all the logs while storing them so that even if someone gets hold of the logs, they can't use them without having access to the decryption key. Another way is to store logs at a third party after encrypting them. For escrow purposes these logs can be decrypted later on with the decryption key.
 \subsection{Threshold Cryptography}
-Threshold cryptography is a field of public key cryptography where in order to decrypt an encrypted message, several parties must cooperate in the decryption. This message is encrypted using a public key and the corresponding private key is shared among different parties who will participate in the decryption process i.e. multiple parties hold the private key for a single public key. There is a term called threshold, and if there are \textit{n} parties who share the private key and at least \textit{t} parties which are required to decrypt the message such system is called (t,n) threshold cryptosystem. Threshold cryptosystem is useful in escrow purposes where a minimum number of parties can be defined to decrypt the ciphertext in order to get the plaintext.
+\textit{Threshold cryptography}\cite{DBLP:conf/acisp/DamgardJ03} is a field of public key cryptography where in order to decrypt an encrypted message, several parties must cooperate in the decryption. This message is encrypted using a \textit{public key} and the corresponding \textit{private key} is shared among different parties who will participate in the decryption process i.e. multiple parties hold the private key for a single public key. There is a term known as \textit{threshold}, and if there are \textit{n} parties who share the private key and at least \textit{t} parties which are required to decrypt the message such system is called \textit{(t,n)} threshold cryptosystem. Threshold cryptosystem is useful in escrow purposes where a minimum number of parties are required to decrypt the ciphertext in order to get the plaintext.
 
 \section{Identity Management Systems}
-These are traditional identity management systems. For our purposes we look at the OpenID system.
+These are traditional identity management systems. For our purposes we look at the \textit{OpenID}\cite{recordon2006openid} system.
 \subsection{OpenID}
 OpenID is an open and decentralized protocol, which can be used to authenticate with different co-operating sites with the use of a third party service. It has the notion of a \textit{relying party} and \textit{OpenID identity provider}.
 \begin{itemize}
 \item \textbf{OpenID Identity Provider :} It is the service, which actually provides authentication services. End user registers at OpenID identity provider to get his OpenID identity.
 \item \textbf{Relying Party :} It is the website which user wants to authenticate to and which rely on the OpenID identity provider to provide authentication.
 \end{itemize}
-In addition to this an extension called \textit{OpenID attribute exchange} helps facilitate the transfer of user attributes from the identity provider to the relying party.
+In addition to this an extension called \textit{OpenID attribute exchange}\cite{hardt2007openid} helps facilitate the transfer of user attributes from the identity provider to the relying party.
 \begin{itemize}
 \item The user goes to the relying party service page.
-\item the Service page presents different OpenID providers to login to the service.
+\item The service page presents different OpenID providers to login to the service.
 \item The user chooses the provider with whom he has registered his OpenID.
 \item The relying party redirects the user to the OpenID provider url so that the user can authenticate.
 \item The user can be authenticated by the method provided by the OpenID provider.
@@ -82,9 +82,9 @@ In addition to this an extension called \textit{OpenID attribute exchange} helps
 \item The relying party can verify the credentials and then login the user to the service.
 \end{itemize}
 \section{Zero Knowledge Technologies}
-These are the technologies which use the concept of zero knowledge i.e. proving knowledge about something without divulging the information. For our purpose we focus on 2 main technologies – IDEMIX and U-Prove, which are based on the concept of zero knowledge and verifiable encryption. They both have a lot in common and have been studied a lot. 
+These are the technologies which use the concept of zero knowledge\cite{ZK} i.e. proving knowledge about something without divulging the information. For our purpose we focus on 2 main technologies – \textit{IDEMIX}\cite{1_zurich_ibm_com_2015} and \textit{U-Prove}\cite{3_research_microsoft_com_2015}, which are based on the concept of zero knowledge\cite{ZK} and verifiable encryption\cite{VE}. They both have a lot in common and have been studied a lot. 
 \subsection{IDEMIX}
-IDEMIX is a digital credential technology by IBM. It relies on anonymous credentials known as IDEMIX tokens. It is based on Camenisch-Lysyanskaya (CL) signature scheme which provides efficient zero-knowledge proofs. IDEMIX  has different entities in the system:
+IDEMIX\cite{camenisch2001efficient}\cite{camenisch2002design}is a digital credential technology by IBM. It relies on anonymous credentials known as IDEMIX tokens. It is based on Camenisch-Lysyanskaya (CL) signature scheme\cite{camenisch2003signature} which provides efficient zero-knowledge proofs. IDEMIX  has different entities in the system:
 \begin{itemize}
 	\item \textbf{User :} It is basically the entity who is proving his identity in the system.
 	\item \textbf{Verifier :} It is the entity that verifies the identity of the prover.
@@ -101,10 +101,11 @@ IDEMIX is a digital credential technology by IBM. It relies on anonymous credent
 	\caption{IDEMIX Roles}
 	\label{fig:Roles}
 \end{figure}
+Figure \ref{fig:Roles} shows these roles in detail.
 
-For IDEMIX we need computing devices that work on behalf of each entity in the system.
+For IDEMIX we need \textit{computing devices} that work on behalf of each entity in the system.
 \subsubsection{IDEMIX Credential}
-An Idemix credential is CL Signature by issuer on user's private key and on attribute values. A user have independent public keys or pseudonyms for the same private key. These pseudonyms are IDEMIX tokens which are then used by the user to prove his identity to the different verifiers. IDEMIX has been studied a lot and many EU projects on anonymous credentials are based on it e.g. FutureID, ABC4Trust etc.
+An IDEMIX credential is CL Signature by issuer on user's private key and on attribute values. A user have independent public keys or pseudonyms for the same private key. These pseudonyms are IDEMIX tokens which are then used by the user to prove his identity to the different verifiers. IDEMIX has been studied a lot and many EU projects on anonymous credentials are based on it e.g. FutureID\cite{rossnagel2012futureid}, ABC4Trust\cite{sabouri2012attribute} etc.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=170pt]{figures/Credential}
@@ -149,19 +150,19 @@ IDEMIX provides the ID escrow ability in case it is required. Following steps ne
 		\item Attributes values to be encrypted using the keys	
 		\item Inspection conditions under which these attributes can be revealed
 	\end{itemize}
-	\item User can prove that he has put these values in the presentation token with verifiable encryption to the verifier
+	\item User can prove that he has put these values in the presentation token with verifiable encryption\cite{camenisch2003practical} to the verifier
 	\item Once the token in presented, the inspection conditions are fixed and cannot be changed 
 	\item In case of some discrepancy or legal requirement, an inspector can come and get the identity of the user from the token
 \end{itemize}
 
 
 \subsection{U-Prove}
-U-Prove is a digital credential technology by Microsoft. It relies on anonymous credentials known as U-Prove tokens. It provides users a way to minimaly disclose their personal information while interacting with different online services. U-prove have different entities in the system
+U-Prove is a digital credential technology by Microsoft\cite{paquin2013u}\cite{paquin2011u}. It relies on anonymous credentials known as U-Prove tokens. It provides users a way to minimaly disclose their personal information while interacting with different online services. U-prove have different entities in the system
 \begin{itemize}
-	\item \textbf{Prover} Prover is basically the entity, which is proving his identity in the system.
-	\item \textbf{Verifier} Verifier is the entity, which verifies the identity of the prover.
-	\item \textbf{Issuer} Issuer is the entity, which issues the credentials to the prover to prove his identity
-	\item \textbf{Auditor} Auditor is the entity, which in case of discrepancy or legal requirement , can actually come and get the real identity of the prover.
+	\item \textbf{Prover :} It is basically the entity, which is proving his identity in the system.
+	\item \textbf{Verifier :} It is the entity, which verifies the identity of the prover.
+	\item \textbf{Issuer :} It is the entity, which issues the credentials to the prover to prove his identity
+	\item \textbf{Auditor :} It is the entity, which in case of discrepancy or legal requirement , can actually come and get the real identity of the prover.
 \end{itemize}
 For U-Prove we need computing devices which work on behalf of each entity in the system.
 \subsubsection{U-Prove Token}
@@ -184,15 +185,15 @@ Next step is to present the U-Prove token for authentication to the verifier. It
 \end{itemize}
 It must be noted that a revocation check can be added if needed before verifying the token.
 \subsubsection{ID Escrow}
-ID Escrow in U-Prove is actually an extension to existing U-Prove technology. It uses a type of ElGamal encryption which is verifiable.
+ID Escrow in U-Prove is actually an extension\cite{zaverucha2013u} to existing U-Prove technology. It uses a type of ElGamal encryption which is verifiable.
 \begin{itemize}
-	\item  During the presentation protocol, prover proves that his ID is encrypted in the token by the use of verifiable encryption technology
+	\item  During the presentation protocol, prover proves that his ID is encrypted in the token by the use of verifiable encryption\cite{VE} technology
 	\item De-anonymization cannot be done by verifier or issuer
 	\item A special entity called Auditor is responsible for de-anonymization in case of some discrepancy or legal requirement
 	\item Threshold cryptography can be used in case of auditors and key can be split among multiple auditors.
 \end{itemize}
 
-All these different technologies provide different level of anonymization in the system. Some of them are easy to integrate in existing technology, while some are still not mature enough. For our purposes from now on we focus on mainly 2 technologies:
+All these different technologies provide different levels of anonymization\cite{goldberg2000pseudonymous} in the system. Some of them are easy to integrate in existing technology, while some are still not mature enough. Going ahead from now on we focus on mainly 2 technologies:
 \begin{itemize}
 	\item OpenID
 	\item IDEMIX
