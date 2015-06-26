@@ -66,10 +66,10 @@ Following are the steps for ID escrow in IDEMIX based system
 \end{itemize}
 \section{Analysis}
 With the use of IDEMIX IMS we add a pseudonymous layer in the system. This provides us the necessary privacy. In order to do so, IDEMIX IMS just need to store the IDEMIX credential of the user. 
-\\
-\\The provider doesn’t need to store any mapping database on his side. It is easier for bank to implement, as bank really doesn’t have to trust the IDEMIX IMS to store sensitive data.
-\\
-\\In case there is a discrepancy, the authorities need to go only to the bank to get the transaction data as well as the mapping data from the IDEMIX tokens.
+
+The provider doesn’t need to store any mapping database on his side. It is easier for bank to implement, as bank really doesn’t have to trust the IDEMIX IMS to store sensitive data.
+
+In case there is a discrepancy, the authorities need to go only to the bank to get the transaction data as well as the mapping data from the IDEMIX tokens.
 \section {IDEMIX implementation in the Real World}
 Now we will try to fit this implementation in our system, which includes Nykredit as the Bank, Signicat as the 3rd party, DTU as corporate customer and other government institutions as authorities.
 \subsection{Addition of the New User}
@@ -111,19 +111,59 @@ Addition of the new customer is almost same as addition of new user:
 	\item Nykredit issue an IDEMIX policy credential for the  DTU administrator to himself. This credential contains the policy information and account information for the administrator.
 	\item Administrator then use this policy credential to register himslef as owner of the new DTU account with Signicat. 
 	\begin{enumerate}
-		\item Signicat inquire about the data given in the credential with the authorities
+		\item Signicat inquires about the data given in the credential with the authorities
 		\item Authorities verify the data to Signicat
 	\end{enumerate}
 	\item After that Signicat issue final IDEMIX credential for the IMS system. This credential is then used to create pseudonym IDEMIX tokens for the administrator. 
 \end{enumerate}
 \subsection{Technical Requirements}
 In this system DTU as a client does not need to change anything on their side to be a customer at Nykredit. All the system for DTU is web based where they can just add/remove users and also DTU users login to the system using the browser.
-\\
-\\Nykredit have to implement IDEMIX issuer service on their side to issue IDEMIX Policy credential. This is done so that Nykredit doesn’t have to store the sensitive data at the 3rd party. Use of this credential ensures that this data remains safe. Nykredit also have to implement IDEMIX verifier service to verify the user identity.
-\\
-\\Signicat have to implement IDEMIX issuer service also to issue final IDEMIX credentials.
-\\\\
-IMS have to implement IDEMIX user service to create the IDEMIX tokens for the user while user is logging in.
 
-This chapter described the IMS system setup using the IDEMIX system. We described how the system will be setup and how it will affect all the parties involved.
+Nykredit have to implement IDEMIX issuer service on their side to issue IDEMIX Policy credential. This is done so that Nykredit doesn’t have to store the sensitive data at the 3rd party. Use of this credential ensures that this data remains safe. Nykredit also have to implement IDEMIX verifier service to verify the user identity.
+
+Signicat have to implement IDEMIX issuer service also to issue final IDEMIX credentials.
+
+IMS have to implement IDEMIX user service to create the IDEMIX tokens for the user while user is logging in.
+\section{High Level Protocol Description}
+In this section, we will give protocol description of the IDEMIX based system. This is a high level description of the protocol and full details can be found in \cite{camenisch2001efficient}.
+
+We assume that all the systems are secured and all the communication within them is encrypted. Let $Cred_{I,U}(data1,data2)$ be an IDEMIX credential issued by issuer I to user U. We define DTU employee as entity D, Nykredit as entity N, IMS as entity I, Signicat as entity S and authorities as entity A. Also the notation
+\begin{center}
+$A->B : \{m\}$
+\end{center}
+means that a message $m$ is sent from $A$ to $B$ in encrypted form such that only A and B can read it.
+We take 3 cases:
+
+\begin{enumerate}
+\item User Registration
+\item User Authentication
+\item User transaction in
+\end{enumerate}
+	
+\subsection{User Registration}
+The protocol works like this:
+\begin{enumerate} 
+\item 	Let  $username$ be the login name of the new user that DTU wants to give access to their account, $account\_id$ be the account number of DTU account with Nykredit and $policy_D$ be the policy defined by the DTU for the user on their account. DTU sends this information to the bank for the user registration.
+
+\begin{center}
+	$D -> N : \{username,account\_id,policy_D\}$
+\end{center}
+\begin{enumerate}
+	\item Bank registers this new user with the IMS system with the given username and receives the password for user to login to the system.
+	\begin{center}
+		$N -> I : \{username\}$
+		
+		$I -> N : \{username,password\}$
+		
+	\end{center}	
+\end{enumerate}
+\item DTU sends this password as well as an IDEMIX credential for the given username back to DTU.
+	\begin{center}
+		$N -> D : \{username,password,Cred_N(username,account\_id,policy_N)\}$
+	\end{center}	
+Where $policy_N$ is the policy created by Nykredit for the user for the given account. $Cred_N(username,account\_id,policy_N)$ is the IDEMIX credential issued by Nykredit for the user with given username.
+\end{enumerate}
+
+This chapter described the IMS system setup using the IDEMIX system. We described how the system would be setup and how it would affect all the parties involved.
+
 
