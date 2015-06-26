@@ -130,12 +130,12 @@ IMS has to implement the \textit{IDEMIX user service} to create the IDEMIX token
 \section{High Level Protocol Description}
 In this section, we will give protocol description of the IDEMIX based system. This is a high level description of the protocol and full details can be found in \cite{camenisch2001efficient}.
 
-We assume that all the systems are secured and all the communication within them is encrypted. Let $Cred_{I,U}(data1,data2,...)$ be an IDEMIX credential issued by issuer I to user U. We define DTU employee as entity D, Nykredit as entity N, IMS as entity I, Signicat as entity S and authorities as entity A. Also the notation:
+We assume that all the systems are secured and all the communication within them is encrypted. Let $Cred_{I,U}(data1,data2,...)$ be an IDEMIX credential issued by issuer $I$ to user $U$ and $Token_{U,V}(data1,data2,...)$ be IDEMIX token created by user $U$ for verifier $V$ . We define DTU employee as entity $D$, Nykredit as entity N, IMS as entity $I$, Signicat as entity $S$ and authorities as entity $A$. Also the notation:
 \begin{center}
 $A \rightarrow B : \{m\}$
 \end{center}
-means that a message $m$ is sent from $A$ to $B$ in encrypted form such that only A and B can read it.
-We take 3 cases:
+means that a message $m$ is sent from $A$ to $B$ in encrypted form such that only $A$ and $B$ can read it.
+We take three cases:
 
 \begin{enumerate}
 \item User Registration
@@ -144,15 +144,15 @@ We take 3 cases:
 \end{enumerate}
 	
 \subsection{User Registration}
-The first part of protocol is the user registration. It involves all the parties in the system. The details of the protocol are as below:
+The first part of protocol is the user registration. It involves all the parties in the system. The details of the protocol are as mentioned below:
 \begin{enumerate} 
-\item 	Let  $username$ be the login name of the new user that DTU wants to give access to their account, $account\_id$ be the account number of DTU account with Nykredit and $policy_D$ be the policy defined by the DTU for the user on their account. DTU sends this information to the bank for the user registration.
+\item 	Let  $username$ be the login name of the new user that DTU wants to give access to their corporate account, $account\_id$ be the account number of DTU account with Nykredit and $policy_D$ be the policy defined by the DTU for the user on their account. DTU sends this information to the bank for the user registration.
 
 \begin{center}
 	$D \rightarrow N : \{username,account\_id,policy_D\}$
 \end{center}
 \begin{enumerate}
-	\item Bank registers this new user with the IMS system with the given username and receives the password for user to login to the system.
+	\item The bank registers this new user with the IMS system with the given username and receives the password for the user to login to the system.
 	\begin{center}
 		$N \rightarrow I : \{username\}$
 		
@@ -162,52 +162,52 @@ The first part of protocol is the user registration. It involves all the parties
 \end{enumerate}
 \item DTU sends this password as well as an IDEMIX credential for the given username back to DTU.
 	\begin{center}
-		$N \rightarrow D : \{username,password,Cred_N(username,account\_id,policy_N)\}$
+		$N \rightarrow D : \{username,password,Cred_{N,D}(username,account\_id,policy_N)\}$
 	\end{center}	
-Where $policy_N$ is the policy created by Nykredit for the user for the given account. It is a mix of the policy given ty the DTU and also some internal Bank policies. $Cred_N(username,account\_id,policy_N)$ is the IDEMIX credential issued by Nykredit for the user with given username.
-\item DTU sends the user data and credential given by Nykredit to Signicat. This user data may contain \textit{real name,CPR nr,address,contact information} etc. for the user. 
+Where $policy_N$ is the policy created by Nykredit for the user for the given account. It is a mix of the policy given ty the DTU and also some internal Bank policies. $Cred_{N,D}(username,account\_id,policy_N)$ is the IDEMIX credential issued by Nykredit for the user with the given username.
+\item DTU sends the user data and credential, given by Nykredit, to Signicat. This user data may contain \textit{real name,CPR nr,address,contact information} etc. for the user. 
 \begin{center}
-	$D \rightarrow S : \{username,userdata,Cred_N(username,account\_id,policy_N)\}$
+	$D \rightarrow S : \{username,userdata,Cred_{N,D}(username,account\_id,policy_N)\}$
 \end{center}
-\item Signicat verifies the user data with the authorities and then issue its own credential $Cred_S(userdata,Cred_N(account\_id,policy_N))$ for the user. This credential contains data from the Nykredit credential $Cred_N(account\_id,policy_N))$ also. This makes sure that Signicat is able to issue the credential over parameters given by Nykredit credential but have no access to the data inside.
+\item Signicat verifies the user data with the authorities and then issues its own credential $Cred_{S,I}(userdata,Cred_{N,D}(account\_id,policy_N))$ for the user. This credential contains data from the Nykredit credential $Cred_{N,D}(account\_id,policy_N))$ also. This makes sure that Signicat is able to issue the credential over parameters given by Nykredit credential without need to know the data inside that credential.
 
-Signicat sends this data to IMS system and user is registered with his credential in the IMS system.
+Signicat sends this data to the IMS system and the user is registered with his credential in the IMS system.
 \begin{center}
-	$S \rightarrow I : \{username,Cred_S(userdata,Cred_N(account\_id,policy_N))\}$
+	$S \rightarrow I : \{username,Cred_{S,I}(userdata,Cred_{N,D}(account\_id,policy_N))\}$
 \end{center}
-User can now login to the system with IMS using his username and password.
+The user can now login to the bank using the IMS system with his username and password.
 \end{enumerate}
 
 \subsection{User Authentication}
-For user authentication, oly DTU employee, IMS and Nykredit systems are needed. The protocol works as follows:
+For user authentication, only DTU employee,the IMS and Nykredit systems are needed. The protocol works as follows:
 \begin{enumerate}
-	\item User sends his username and password to the IMS system.
+	\item The user sends his username and password to the IMS system.
 	\begin{center}
 		$D \rightarrow I : \{username,password\}$
 	\end{center}
 	\begin{enumerate}
-	\item IMS system after verifying the user credentials, creates an IDEMIX token from the user credential.
+	\item The IMS system, after verifying the user credentials, creates an IDEMIX token from the user credential.
 	\begin{center}
-		$Cred_S(userdata,Cred_N(account\_id,policy_N)) \rightarrow Token_I(pseudonym,account\_id,policy_N,\{userdata\}PK_A)$
+		$Cred_{S,I}(userdata,Cred_{N,D}(account\_id,policy_N)) \rightarrow Token_{I,N}(pseudonym,account\_id,policy_N,\{userdata\}PK_A)$
 	\end{center}
-	$pseudonym$ is the pseudonym generated by the IMS for the user. $Token_I(pseudonym,account\_id,policy_N,\{userdata\}PK_A)$ is the IDEMIX token created by IMS from $Cred_S(userdata,Cred_N(account\_id,policy_N))$. $PK_A$ is the public key of authorities and $userdata$ is encrypted using this public key. It is a verifiable encryption and it can be verified that the token has actual $userdata$ encrypted using $PK_A$.
+	$pseudonym$ is the pseudonym generated by the IMS for the user. $Token_{I,N}(pseudonym,account\_id,policy_N,\{userdata\}PK_A)$ is the IDEMIX token created by IMS from $Cred_{S,I}(userdata,Cred_{N,D}(account\_id,policy_N))$. $PK_A$ is the public key of authorities and $userdata$ is encrypted using this public key. It is a verifiable encryption\cite{camenisch2003practical} and it can be verified that the token has actual $userdata$ encrypted using $PK_A$.
 	\end{enumerate}
-	\item IMS system then sends the IDEMIX token to Nykredit. 
+	\item The IMS system then sends the IDEMIX token to Nykredit. 
 	\begin{center}
 		$I \rightarrow N : Token_I(account\_id,policy_N,\{userdata\}PK_A)$
 	\end{center}
 	\item Nykredit verifies the token and authenticates the user.
 	\begin{center}
-		$N \rightarrow D : {pseudonym,session_secret,status}$
+		$N \rightarrow D : {pseudonym,session\_secret,status}$
 	\end{center}
-	Where $session_secret$ is the secret value that Nykredit established with the user. This value is sent in subsequent requests by the user to Nykredit.
+	Where $session\_secret$ is the secret value that Nykredit established with the user. This value is sent in subsequent requests by the user to Nykredit.
 \end{enumerate}
 \subsection{User Transcation}
-The user transaction happens in the same manner the current system. We assume that user is already authenticated using the steps above. The only entities involved are DTU and Nykredit in this case:
+The user transaction happens in the same manner as in the current system. We assume that the user is already authenticated using the steps above. The only entities involved are DTU user and Nykredit in this case:
 \begin{enumerate}
-\item DTU user sends the transaction request to Nykredit.
+\item The DTU user sends the transaction request to Nykredit.
 	\begin{center}
-		$D \rightarrow N : {session_secret,transaction_request}$
+		$D \rightarrow N : {session\_secret,transaction_request}$
 	\end{center}
 \item Nykredit performs the transcation and sends the result back.
 	\begin{center}
